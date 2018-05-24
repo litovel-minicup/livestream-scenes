@@ -25,4 +25,9 @@ Window {
             size: 130
         }
     }
+
+    Component.onCompleted: {
+        var start = 1527122504
+        console.log((Date.now() / 1000 - start))
+    }
 }

@@ -13,13 +13,13 @@ Rectangle {
         id: internal
 
         function stretchComponentWithText() {
+            fm.font = component.text.font
             component.width = 2 * component.hPadding + fm.advanceWidth(text.text)
         }
     }
 
     FontMetrics {
         id: fm
-        font: text.font
     }
 
     Text {
@@ -33,6 +33,7 @@ Rectangle {
     }
 
     Component.onCompleted: internal.stretchComponentWithText()
+    onHPaddingChanged: internal.stretchComponentWithText()
     onStyleChanged: {
         if(!component.style)
             return
@@ -42,5 +43,6 @@ Rectangle {
         component.text.font.family = Qt.binding(function() { return component.style.font.family })
         component.text.color = Qt.binding(function() { return component.style.textColor })
         component.color = Qt.binding(function() { return component.style.color })
+        internal.stretchComponentWithText()
     }
 }

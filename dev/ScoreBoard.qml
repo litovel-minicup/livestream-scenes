@@ -111,13 +111,13 @@ Item {
             SequentialAnimation {
                 ParallelAnimation {
                     NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
-                        duration: 300; easing.type: Easing.InOutQuad }
+                        duration: 500; easing.type: Easing.InOutQuad }
                     NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
-                        duration: 300; easing.type: Easing.InOutQuad }
+                        duration: 500; easing.type: Easing.InOutQuad }
                 }
                 NumberAnimation { target: timePanel; property: "opacity"; duration: 0 }
                 NumberAnimation { target: timePanel; property: "anchors.topMargin";
-                    duration: 300; easing.type: Easing.InOutQuad }
+                    duration: 500; easing.type: Easing.InOutQuad }
             }
         },
 
@@ -125,13 +125,13 @@ Item {
             from: "full"; to: "compact"
             SequentialAnimation {
                 NumberAnimation { target: timePanel; property: "anchors.topMargin";
-                    duration: 300; easing.type: Easing.InOutQuad }
+                    duration: 500; easing.type: Easing.InOutQuad }
                 NumberAnimation { target: timePanel; property: "opacity"; duration: 0 }
                 ParallelAnimation {
                     NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
-                        duration: 300; easing.type: Easing.InOutQuad }
+                        duration: 500; easing.type: Easing.InOutQuad }
                     NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
-                        duration: 300; easing.type: Easing.InOutQuad }
+                        duration: 500; easing.type: Easing.InOutQuad }
                 }
             }
         },
@@ -140,42 +140,42 @@ Item {
             from: "full"; to: "hidden"
             SequentialAnimation {
                 NumberAnimation { target: timePanel; property: "anchors.topMargin";
-                    duration: 300; easing.type: Easing.InOutQuad }
+                    duration: 500; easing.type: Easing.InOutQuad }
                 NumberAnimation { target: timePanel; property: "opacity"; duration: 0 }
                 ParallelAnimation {
                     NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
-                        duration: 300; easing.type: Easing.InOutQuad }
+                        duration: 500; easing.type: Easing.InOutQuad }
                     NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
-                        duration: 300; easing.type: Easing.InOutQuad }
+                        duration: 500; easing.type: Easing.InOutQuad }
                 }
-                NumberAnimation { target: component; property: "opacity"; duration : 150 }
+                NumberAnimation { target: component; property: "opacity"; duration : 250 }
             }
         },
 
         Transition {
             from: "hidden"; to: "full"
-            NumberAnimation { target: component; property: "opacity"; duration : 150 }
+            NumberAnimation { target: component; property: "opacity"; duration : 250 }
             SequentialAnimation {
                 ParallelAnimation {
                     NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
-                        duration: 300; easing.type: Easing.InOutQuad }
+                        duration: 500; easing.type: Easing.InOutQuad }
                     NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
-                        duration: 300; easing.type: Easing.InOutQuad }
+                        duration: 500; easing.type: Easing.InOutQuad }
                 }
                 NumberAnimation { target: timePanel; property: "opacity"; duration: 0 }
                 NumberAnimation { target: timePanel; property: "anchors.topMargin";
-                    duration: 300; easing.type: Easing.InOutQuad }
+                    duration: 500; easing.type: Easing.InOutQuad }
             }
         },
 
         Transition {
             from: "compact"; to: "hidden"
-            NumberAnimation { target: component; property: "opacity"; duration : 150 }
+            NumberAnimation { target: component; property: "opacity"; duration : 250 }
         },
 
         Transition {
             from: "hidden"; to: "compact"
-            NumberAnimation { target: component; property: "opacity"; duration : 150 }
+            NumberAnimation { target: component; property: "opacity"; duration : 250 }
         }
     ]
 

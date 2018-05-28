@@ -21,35 +21,32 @@ Item {
         id: internal
 
         readonly property BoxedTextStyle teamsStyle: BoxedTextStyle {
-            hPadding: 11
-            vPadding: 11
+            hPadding: component.size / 11.8
+            vPadding: hPadding
             textColor: "white"
             color: "#1a75bc"
             font.family: "Montserrat Light"
         }
 
         readonly property BoxedTextStyle scoreStyle: BoxedTextStyle {
-            // TODO relative padidng
-            hPadding: 11
-            vPadding: 11
+            hPadding: component.size / 11.8
+            vPadding: hPadding
             textColor: "black"
             color: "#cecece"
             font.family: "Montserrat"
         }
 
         readonly property BoxedTextStyle halfStyle: BoxedTextStyle {
-            // TODO relative padidng
-            hPadding: 18
-            vPadding: 11
+            hPadding: component.size / 7.2
+            vPadding: component.size / 11.8
             textColor: "white"
             color: "#636363"
             font.family: "Montserrat Light"
         }
 
         readonly property BoxedTextStyle timeStyle: BoxedTextStyle {
-            // TODO relative padidng
-            hPadding: 18
-            vPadding: 11
+            hPadding: component.size / 7.2
+            vPadding: component.size / 11.8
             textColor: "white"
             color: "#474747"
             font.family: "Montserrat Light"
@@ -57,7 +54,7 @@ Item {
     }
 
     // TODO remove
-    MouseArea {
+    /*MouseArea {
         anchors.fill: parent
         onClicked:  {
             if(component.state == "compact")
@@ -67,7 +64,7 @@ Item {
             else
                 component.state = "full"
         }
-    }
+    }*/
 
     states: [
         State {

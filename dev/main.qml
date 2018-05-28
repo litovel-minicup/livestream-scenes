@@ -1,33 +1,44 @@
 import QtQuick 2.9
 import QtQuick.Window 2.2
 
-Window {
+Item {
+    id: component
+
     visible: true
-    width: 640
-    height: 480
-    // TODO make from engine
+    width: engine.width
+    height: engine.height
 
     FontLoader {
-        // TODO to relative path
-        source: "qrc:/montserrat-light.ttf"
+        source: "montserrat-light.ttf"
     }
 
     FontLoader {
-        // TODO to relative path
-        source: "qrc:/montserrat-regular.ttf"
+        source: "montserrat-regular.ttf"
     }
 
-    Item {
-        width: parent.width
-        height: parent.height
+    Connections {
+        target: matchDataManager
+        onMatchDataChanged: component.updateData(matchDataManager.matchData)
+    }
 
-        ScoreBoard {
-            size: 130
-        }
+    ScoreBoard {
+        id: scoreBoard
+
+        height: parent.height * 0.75
+        state: "full"       // TODO change
+
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
     }
 
     Component.onCompleted: {
-        var start = 1527122504
-        console.log((Date.now() / 1000 - start))
+        if(matchDataManager.hasAllData())
+            component.updateData(matchDataManager.matchData)
+    }
+
+    function updateData(data) {
+//        var start = 1527122504
+//        console.log((Date.now() / 1000 - start))
+        console.log(data.away_team_abbr)
     }
 }

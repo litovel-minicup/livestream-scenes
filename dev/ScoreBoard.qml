@@ -53,19 +53,6 @@ Item {
         }
     }
 
-    // TODO remove
-    /*MouseArea {
-        anchors.fill: parent
-        onClicked:  {
-            if(component.state == "compact")
-                component.state = "full"
-            else if(component.state == "full")
-                component.state = "hidden"
-            else
-                component.state = "full"
-        }
-    }*/
-
     states: [
         State {
             name: "_compact"

@@ -213,6 +213,7 @@ Item {
 
             x: teamHomeBox.width
             size: parent.height
+            monospaceHack: true
             text.text: component.teamHomeScore
             style: internal.scoreStyle
         }
@@ -221,6 +222,7 @@ Item {
             id: teamAwayScoreBox
 
             size: parent.height
+            monospaceHack: true
             text.text: component.teamAwayScore
             style: internal.scoreStyle
 
@@ -241,6 +243,7 @@ Item {
             id: halfBox
 
             text.text: component.half.toString() + "/2"
+            monospaceHack: true
             size: parent.height
             style: internal.halfStyle
         }
@@ -249,6 +252,7 @@ Item {
             id: timeBox
 
             text.text: component.time
+            monospaceHack: true
             size: parent.height
             style: internal.timeStyle
 

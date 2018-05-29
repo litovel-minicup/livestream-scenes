@@ -7,14 +7,22 @@ Rectangle {
     property real hPadding: 5
     property real vPadding: 5
     property alias size: component.height
+    property bool monospaceHack: false
     property BoxedTextStyle style
 
     QtObject {
         id: internal
 
         function stretchComponentWithText() {
+            var patt = /([0-8])/
+            var str = text.text
+            if(monospaceHack) {
+                while(str.match(patt))
+                    str = str.replace(patt, "9" + "$2")
+            }
+
             fm.font = component.text.font
-            component.width = 2 * component.hPadding + fm.advanceWidth(text.text)
+            component.width = 2 * component.hPadding + fm.advanceWidth(str)
         }
     }
 

@@ -9,7 +9,8 @@
         <file>viewPlayersView.qml</file>
         <file>PlayersView.qml</file>
         <file>MonospacedText.qml</file>
-        <file>main.qml</file>
+        <file>viewFinalScore.qml</file>
+        <file>FinalScore.qml</file>
         <file>WrappedText.qml</file>
         <file>StyledText.qml</file>
         <file>StyledTextStyle.qml</file>

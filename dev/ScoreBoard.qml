@@ -72,11 +72,15 @@ Item {
             extend: "_compact"
 
             PropertyChanges { target: component; opacity: 1 }
+            PropertyChanges { target: teamAwayScoreBox; opacity: 1 }
+            PropertyChanges { target: teamHomeScoreBox; opacity: 1 }
         },
 
         State {
             name: "full"
             PropertyChanges { target: component; opacity: 1 }
+            PropertyChanges { target: teamAwayScoreBox; opacity: 1 }
+            PropertyChanges { target: teamHomeScoreBox; opacity: 1 }
             PropertyChanges { target: teamHomeBox; anchors.rightMargin: 0 }
             PropertyChanges { target: teamAwayBox; anchors.rightMargin: 0 }
             PropertyChanges { target: timePanel; anchors.topMargin: 0; opacity: 1}
@@ -85,6 +89,8 @@ Item {
         State {
             name: "hidden"
             extend: "_compact"
+            PropertyChanges { target: teamAwayScoreBox; opacity: 0 }
+            PropertyChanges { target: teamHomeScoreBox; opacity: 0 }
             PropertyChanges { target: component; opacity: 0 }
         }
 
@@ -133,14 +139,18 @@ Item {
                     NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
                         duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                 }
+                NumberAnimation { target: teamAwayScoreBox; property: "opacity"; duration : 0 }
+                NumberAnimation { target: teamHomeScoreBox; property: "opacity"; duration : 0 }
                 NumberAnimation { target: component; property: "opacity"; duration : 250 }
             }
         },
 
         Transition {
             from: "hidden"; to: "full"
-            NumberAnimation { target: component; property: "opacity"; duration : 250 }
             SequentialAnimation {
+                NumberAnimation { target: component; property: "opacity"; duration : 250 }
+                NumberAnimation { target: teamAwayScoreBox; property: "opacity"; duration : 0 }
+                NumberAnimation { target: teamHomeScoreBox; property: "opacity"; duration : 0 }
                 ParallelAnimation {
                     NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
                         duration: component.animationsDuration; easing.type: Easing.InOutQuad }
@@ -155,12 +165,24 @@ Item {
 
         Transition {
             from: "compact"; to: "hidden"
-            NumberAnimation { target: component; property: "opacity"; duration : 250 }
+            SequentialAnimation {
+                ParallelAnimation {
+                    NumberAnimation { target: teamAwayScoreBox; property: "opacity"; duration : 250 }
+                    NumberAnimation { target: teamHomeScoreBox; property: "opacity"; duration : 250 }
+                }
+                NumberAnimation { target: component; property: "opacity"; duration : 250 }
+            }
         },
 
         Transition {
             from: "hidden"; to: "compact"
-            NumberAnimation { target: component; property: "opacity"; duration : 250 }
+            SequentialAnimation {
+                NumberAnimation { target: component; property: "opacity"; duration : 250 }
+                ParallelAnimation {
+                    NumberAnimation { target: teamAwayScoreBox; property: "opacity"; duration : 250 }
+                    NumberAnimation { target: teamHomeScoreBox; property: "opacity"; duration : 250 }
+                }
+            }
         }
     ]
 

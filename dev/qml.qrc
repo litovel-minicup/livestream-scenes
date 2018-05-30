@@ -1,10 +1,13 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file>viewScoreBoard.qml</file>
         <file>ScoreBoard.qml</file>
         <file>montserrat-light.ttf</file>
         <file>montserrat-regular.ttf</file>
         <file>BoxedText.qml</file>
         <file>BoxedTextStyle.qml</file>
+        <file>main.qml</file>
+        <file>PlayersView.qml</file>
+        <file>MonospacedText.qml</file>
     </qresource>
 </RCC>

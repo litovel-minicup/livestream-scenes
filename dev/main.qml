@@ -10,11 +10,11 @@ Window {
 
     PlayersView {
         id: playerView
-        state: "visible"
-        x: 100
-        y: 100
-        width: parent.width / 1.3
-        height: parent.height /1.3
+        state: "hidden"
+//        x: 100
+//        y: 100
+        width: parent.width / 1
+        height: parent.height /1
 
         teamName: "LITOVEL"
         players: [

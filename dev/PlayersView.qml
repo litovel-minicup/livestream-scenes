@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.9
 
 Item {
     id: component
@@ -21,9 +21,8 @@ Item {
         },
         State {
             name: "visible"
-            PropertyChanges { target: titleBar; width: component.width }
-            // TODO change height according to content
-            PropertyChanges { target: content; height: component.height - titleBar.height }
+            PropertyChanges { target: titleBar; width: grid.width }
+            PropertyChanges { target: content; height: grid.height }
         }
     ]
 
@@ -54,6 +53,8 @@ Item {
         id: titleBar
 
         height: parent.height * 0.133
+        clip: true
+        anchors.horizontalCenter: parent.horizontalCenter
 
         Rectangle {
             color: component.titleBarColor
@@ -76,9 +77,10 @@ Item {
         id: content
 
         clip: true
-        width: parent.width
+        width: grid.width
 
         anchors.top: titleBar.bottom
+        anchors.left: titleBar.left
 
         Rectangle {
             color: component.contentBackgroundColor
@@ -87,10 +89,15 @@ Item {
         }
 
         Grid {
-            columns: 2
-            columnSpacing: 150
+            id: grid
 
-            anchors.fill: parent
+            columns: 2
+            columnSpacing: component.height / 3.59
+            leftPadding: component.height / 26.9
+            rightPadding: leftPadding
+            topPadding: component.height / 53.8
+            bottomPadding: topPadding
+            flow: Grid.TopToBottom
 
             Repeater {
                 model: component.players
@@ -102,15 +109,23 @@ Item {
 
                     Row {
                         id: row
-                        spacing: 0
 
                         Text { text: "["; font: playerName.font; color: component.bracketsColor }
                         MonospacedText {
+                            id: playerNumber
+
                             text: modelData.number.toString()
                             color: playerName.color
                             font: playerName.font
                         }
                         Text { text: "]"; font: playerName.font; color: component.bracketsColor }
+                        Text {      // Align with monospaced hack
+                            text: (modelData.number < 10 ) ?
+                                      playerNumber.monospaceEndReference :""
+                            font: playerName.font
+                            color: component.bracketsColor
+                            opacity: 0
+                        }
 
                         Text {
                             id: playerName
@@ -119,8 +134,7 @@ Item {
                             color: component.contentTextColor
 
                             font.family: "Montserrat"
-                            // TODO relative
-                            font.pixelSize: 45
+                            font.pixelSize: component.height / 12
                         }
                     }
                 }

@@ -8,6 +8,11 @@ Item {
     width: engine.width
     height: engine.height
 
+    Component.onCompleted: {
+        if(matchDataManager.hasAllData())
+            component.updateData(matchDataManager.matchData)
+    }
+
     FontLoader {
         source: "montserrat-light.ttf"
     }
@@ -38,11 +43,6 @@ Item {
 
         anchors.left: offset.right
         anchors.top: offset.bottom
-    }
-
-    Component.onCompleted: {
-        if(matchDataManager.hasAllData())
-            component.updateData(matchDataManager.matchData)
     }
 
     Timer {

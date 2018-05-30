@@ -5,19 +5,37 @@ Window {
     id: component
 
     visible: true
-    width: 800
-    height: 300
+    width: 1600
+    height: 700
 
     PlayersView {
         id: playerView
-
+        state: "visible"
+        x: 100
+        y: 100
         width: parent.width / 1.3
         height: parent.height /1.3
+
+        teamName: "LITOVEL"
+        players: [
+            {"name": "Sony Bobman", "number": 1},
+            {"name": "Sony BobFman", "number": 11},
+            {"name": "Sony Foo", "number": 3},
+            {"name": "Sony man", "number": 14},
+            {"name": "Sony Bobman", "number": 5},
+            {"name": "Sony kamaaaa", "number": 6},
+            {"name": "Sony Bobman", "number": 7}
+        ]
     }
 
     MouseArea {
         anchors.fill: parent
-        onClicked: playerView.show()
+        onClicked: {
+            if(playerView.state == "hidden")
+                playerView.state = "visible"
+            else
+                playerView.state = "hidden"
+        }
     }
 
 

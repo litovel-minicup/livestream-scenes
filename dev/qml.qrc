@@ -1,15 +1,15 @@
 <RCC>
     <qresource prefix="/">
-        <file>viewScoreBoard.qml</file>
+        <file>sceneScoreBoard.qml</file>
         <file>ScoreBoard.qml</file>
         <file>montserrat-light.ttf</file>
         <file>montserrat-regular.ttf</file>
         <file>BoxedText.qml</file>
         <file>BoxedTextStyle.qml</file>
-        <file>viewPlayersView.qml</file>
+        <file>scenePlayersView.qml</file>
         <file>PlayersView.qml</file>
         <file>MonospacedText.qml</file>
-        <file>viewFinalScore.qml</file>
+        <file>sceneFinalScore.qml</file>
         <file>FinalScore.qml</file>
         <file>WrappedText.qml</file>
         <file>StyledText.qml</file>

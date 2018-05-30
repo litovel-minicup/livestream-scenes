@@ -10,5 +10,6 @@
         <file>PlayersView.qml</file>
         <file>MonospacedText.qml</file>
         <file>main.qml</file>
+        <file>StyledTextStyle.qml</file>
     </qresource>
 </RCC>

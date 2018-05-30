@@ -1,6 +1,6 @@
 import QtQuick 2.4
 
-Rectangle {
+Item {
     id: component
 
     property alias text: text
@@ -9,6 +9,8 @@ Rectangle {
     property alias size: component.height
     property bool monospaceHack: false
     property BoxedTextStyle style
+    property alias color: background.color
+    property alias backgroundOpacity: background.opacity
 
     QtObject {
         id: internal
@@ -24,6 +26,11 @@ Rectangle {
             fm.font = component.text.font
             component.width = 2 * component.hPadding + fm.advanceWidth(str)
         }
+    }
+
+    Rectangle {
+        id: background
+        anchors.fill: parent
     }
 
     FontMetrics {

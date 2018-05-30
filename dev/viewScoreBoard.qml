@@ -19,6 +19,9 @@ Item {
     Connections {
         target: matchDataManager
         onMatchDataChanged: component.updateData(matchDataManager.matchData)
+        onShowCompactScoreBoardReq: scoreBoard.state = "compact"
+        onShowFullScoreBoardReq: scoreBoard.state = "full"
+        onHideScoreBoardReq: scoreBoard.state = "hidden"
     }
 
     Item {

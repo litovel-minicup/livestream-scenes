@@ -10,6 +10,7 @@ Item {
     property string teamAway: "DUK"
     property int teamHomeScore: 30
     property int teamAwayScore: 22
+    property int animationsDuration: 350
 
     property int half: 1
     property string time: "13:25"
@@ -95,13 +96,13 @@ Item {
             SequentialAnimation {
                 ParallelAnimation {
                     NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
-                        duration: 500; easing.type: Easing.InOutQuad }
+                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                     NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
-                        duration: 500; easing.type: Easing.InOutQuad }
+                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                 }
                 NumberAnimation { target: timePanel; property: "opacity"; duration: 0 }
                 NumberAnimation { target: timePanel; property: "anchors.topMargin";
-                    duration: 500; easing.type: Easing.InOutQuad }
+                    duration: component.animationsDuration; easing.type: Easing.InOutQuad }
             }
         },
 
@@ -109,13 +110,13 @@ Item {
             from: "full"; to: "compact"
             SequentialAnimation {
                 NumberAnimation { target: timePanel; property: "anchors.topMargin";
-                    duration: 500; easing.type: Easing.InOutQuad }
+                    duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                 NumberAnimation { target: timePanel; property: "opacity"; duration: 0 }
                 ParallelAnimation {
                     NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
-                        duration: 500; easing.type: Easing.InOutQuad }
+                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                     NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
-                        duration: 500; easing.type: Easing.InOutQuad }
+                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                 }
             }
         },
@@ -124,13 +125,13 @@ Item {
             from: "full"; to: "hidden"
             SequentialAnimation {
                 NumberAnimation { target: timePanel; property: "anchors.topMargin";
-                    duration: 500; easing.type: Easing.InOutQuad }
+                    duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                 NumberAnimation { target: timePanel; property: "opacity"; duration: 0 }
                 ParallelAnimation {
                     NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
-                        duration: 500; easing.type: Easing.InOutQuad }
+                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                     NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
-                        duration: 500; easing.type: Easing.InOutQuad }
+                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                 }
                 NumberAnimation { target: component; property: "opacity"; duration : 250 }
             }
@@ -142,13 +143,13 @@ Item {
             SequentialAnimation {
                 ParallelAnimation {
                     NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
-                        duration: 500; easing.type: Easing.InOutQuad }
+                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                     NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
-                        duration: 500; easing.type: Easing.InOutQuad }
+                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                 }
                 NumberAnimation { target: timePanel; property: "opacity"; duration: 0 }
                 NumberAnimation { target: timePanel; property: "anchors.topMargin";
-                    duration: 500; easing.type: Easing.InOutQuad }
+                    duration: component.animationsDuration; easing.type: Easing.InOutQuad }
             }
         },
 

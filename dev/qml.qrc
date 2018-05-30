@@ -6,8 +6,9 @@
         <file>montserrat-regular.ttf</file>
         <file>BoxedText.qml</file>
         <file>BoxedTextStyle.qml</file>
-        <file>main.qml</file>
+        <file>viewPlayersView.qml</file>
         <file>PlayersView.qml</file>
         <file>MonospacedText.qml</file>
+        <file>main.qml</file>
     </qresource>
 </RCC>

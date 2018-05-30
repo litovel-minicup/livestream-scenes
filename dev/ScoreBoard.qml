@@ -8,12 +8,12 @@ Item {
     // TODO change defaults
     property string teamHome: "LIT"
     property string teamAway: "DUK"
-    property int teamHomeScore: 30
-    property int teamAwayScore: 22
+    property int teamHomeScore: 0
+    property int teamAwayScore: 0
     property int animationsDuration: 350
 
     property int half: 1
-    property string time: "13:25"
+    property string time: "0:00"
 
     width: teamHomeBox.width + teamHomeScoreBox.width + teamAwayBox.width + teamAwayScoreBox.width
     state: "compact"

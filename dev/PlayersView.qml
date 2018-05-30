@@ -3,6 +3,9 @@ import QtQuick 2.9
 Item {
     id: component
 
+    signal showed()
+    signal hided()
+
     property alias teamName: teamNameText.text
     property var players: []
     property color titleBarColor: "#1C70B7"
@@ -41,6 +44,7 @@ Item {
                     easing.type: Easing.InOutQuad }
                 NumberAnimation { target: content; property: "height"; duration: 700
                     easing.type: Easing.InOutQuad }
+                ScriptAction { script: component.showed() }
             }
         },
 
@@ -51,6 +55,7 @@ Item {
                     easing.type: Easing.InOutQuad }
                 NumberAnimation { target: titleBar; property: "width"; duration: 700
                     easing.type: Easing.InOutQuad }
+                ScriptAction { script: component.hided() }
             }
         }
     ]

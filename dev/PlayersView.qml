@@ -13,6 +13,13 @@ Item {
 
     state: "hidden"
 
+    QtObject {
+        id: internal
+
+        readonly property real componentWidth: Math.max(grid.width,
+                                                        teamNameText.width + 2 * teamNameText.font.pixelSize)
+    }
+
     states: [
         State {
             name: "hidden"
@@ -21,7 +28,7 @@ Item {
         },
         State {
             name: "visible"
-            PropertyChanges { target: titleBar; width: grid.width }
+            PropertyChanges { target: titleBar; width: internal.componentWidth }
             PropertyChanges { target: content; height: grid.height }
         }
     ]
@@ -77,7 +84,7 @@ Item {
         id: content
 
         clip: true
-        width: grid.width
+        width: internal.componentWidth
 
         anchors.top: titleBar.bottom
         anchors.left: titleBar.left

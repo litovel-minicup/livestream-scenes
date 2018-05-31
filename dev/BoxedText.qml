@@ -11,6 +11,7 @@ Item {
     property BoxedTextStyle style
     property alias color: background.color
     property alias backgroundOpacity: background.opacity
+    readonly property Item textParent: component
 
     QtObject {
         id: internal

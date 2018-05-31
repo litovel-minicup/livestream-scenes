@@ -46,14 +46,17 @@ Item {
     function updateData(data) {
         finalScore.homeTeamName = data.home_team_name;
         finalScore.awayTeamName = data.away_team_name;
-        finalScore.homeTeamScore = data.score[0];
-        finalScore.awayTeamScore = data.score[1];
+        if(data.score !== null) {
+            finalScore.homeTeamScore = data.score[0];
+            finalScore.awayTeamScore = data.score[1];
+        }
 
         var matchStates = {
             "end": "KONEC ZÁPASU",
             "pause": "POLOČAS"
         }
 
-        finalScore.matchState = matchStates[data.state];
+        if(data.state in matchStates)
+            finalScore.matchState = matchStates[data.state];
     }
 }

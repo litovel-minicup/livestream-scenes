@@ -14,5 +14,7 @@
         <file>WrappedText.qml</file>
         <file>StyledText.qml</file>
         <file>StyledTextStyle.qml</file>
+        <file>sceneShooter.qml</file>
+        <file>ShooterView.qml</file>
     </qresource>
 </RCC>

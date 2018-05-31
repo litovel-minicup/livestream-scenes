@@ -11,6 +11,7 @@ Item {
     property BoxedTextStyle style
     property alias color: background.color
     property alias backgroundOpacity: background.opacity
+    property real alignWidth: 0
     readonly property Item textParent: component
 
     QtObject {
@@ -25,7 +26,8 @@ Item {
             }
 
             fm.font = component.text.font
-            component.width = 2 * component.hPadding + fm.advanceWidth(str)
+            component.width = Math.max(2 * component.hPadding + fm.advanceWidth(str),
+                                       component.alignWidth)
         }
     }
 
@@ -50,6 +52,7 @@ Item {
 
     Component.onCompleted: internal.stretchComponentWithText()
     onHPaddingChanged: internal.stretchComponentWithText()
+    onAlignWidthChanged: internal.stretchComponentWithText()
     onStyleChanged: {
         if(!component.style)
             return

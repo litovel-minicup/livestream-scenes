@@ -51,6 +51,11 @@ Item {
             finalScore.awayTeamScore = data.score[1];
         }
 
+        else {
+            finalScore.homeTeamScore = 0;
+            finalScore.awayTeamScore = 0;
+        }
+
         var matchStates = {
             "end": "KONEC ZÁPASU",
             "pause": "POLOČAS"

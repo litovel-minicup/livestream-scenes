@@ -73,8 +73,9 @@ Item {
         else if(matchState === "half_first" || matchState === "half_second") {
             var start = data[(matchState === "half_first") ?"first_half_start"
                                                            :"second_half_start"]
-            passedSecs = Date.now() / 1000 - start
+            passedSecs = Date.now() / 1000 - (start + data.time_diff)
             passedSecs = (passedSecs < 0) ?0 :passedSecs
+            passedSecs = (passedSecs > halfDuration) ?halfDuration :passedSecs
             scoreBoard.half = (matchState === "half_second") ?2 :1
             if(!matchTimer.running)
                 matchTimer.running = true
@@ -84,7 +85,6 @@ Item {
         time.setMinutes(Math.floor(passedSecs / 60))
         time.setSeconds(passedSecs % 60)
         scoreBoard.time = Qt.formatTime(time, "m:ss")
-
     }
 
     function updateData(data) {

@@ -54,10 +54,10 @@ Item {
     }
 
     function updateData(data) {
-        homePlayersView.teamName = data.home_team_abbr
+        homePlayersView.teamName = data.home_team_name
         homePlayersView.players = data.players.home.players
 
-        awayPlayersView.teamName = data.away_team_abbr
+        awayPlayersView.teamName = data.away_team_name
         awayPlayersView.players = data.players.away.players
     }
 }

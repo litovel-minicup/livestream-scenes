@@ -65,8 +65,8 @@ Item {
         var passedSecs = 0
 
         if(matchState === "end" || matchState === "init" || matchState === "pause") {
-            passedSecs = halfDuration
-            scoreBoard.half = (matchState === "end") ?2 :1
+            passedSecs = (matchState === "end") ?halfDuration :0
+            scoreBoard.half = (matchState === "end" || matchState == "pause") ?2 :1
             matchTimer.running = false
         }
 

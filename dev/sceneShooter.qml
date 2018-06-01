@@ -25,8 +25,8 @@ Item {
         target: matchDataManager
         onMatchDataChanged: component.updateData(matchDataManager.matchData)
         onShowShooterReq: {
-            if(matchDataManager.matchData.last_shooter.player_number !== null &&
-                    matchDataManager.matchData.last_shooter.player_number !== undefined)
+            if(matchDataManager.matchData.last_shooter.team_name !== null &&
+                    matchDataManager.matchData.last_shooter.team_name !== undefined)
                 shooterView.state = "visible"
         }
         onHideShooterReq: shooterView.state = "hidden"
@@ -38,11 +38,21 @@ Item {
     }
 
     function updateData(data) {
-        if(data.last_shooter.player_number !== null &&
-                data.last_shooter.player_number !== undefined) {
-            shooterView.playerNumber = data.last_shooter.player_number
-            shooterView.playerName = data.last_shooter.player_name
-            shooterView.teamName = data.last_shooter.team_name
+        if(data.last_shooter.team_name !== null &&
+                data.last_shooter.team_name !== undefined) {
+            if(data.last_shooter.player_number !== null &&
+                    data.last_shooter.player_number !== undefined) {
+                shooterView.playerNumber = data.last_shooter.player_number
+                shooterView.playerName = data.last_shooter.player_name
+                shooterView.teamName = data.last_shooter.team_name
+            }
+
+            else {
+                shooterView.teamName = ""
+                shooterView.playerNumber = " "
+                shooterView.playerName = data.last_shooter.team_name
+            }
+
         }
     }
 }

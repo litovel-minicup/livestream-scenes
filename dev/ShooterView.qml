@@ -5,7 +5,7 @@ Item {
 
     property string playerName: "Pepča Kolo"
     property string teamName: "Litovel"
-    property int playerNumber: 2
+    property string playerNumber: "0"
     property int showDelay: 0
 
     state: "hidden"
@@ -52,7 +52,7 @@ Item {
             name: "visible"
             PropertyChanges { target: playerNumber; opacity: 1 }
             PropertyChanges { target: playerName; x: 0 }
-            PropertyChanges { target: teamName; y: 0 }
+            PropertyChanges { target: teamName; y: (component.teamName == "") ?-height :0 }
         }
     ]
 
@@ -86,7 +86,7 @@ Item {
         id: playerNumberClipper
 
         clip: true
-        height: parent.height
+        height: (component.teamName == "") ?playerNameClipper.height :parent.height
         width: playerNumber.width
 
         BoxedText {

@@ -26,7 +26,7 @@ Item {
         onMatchDataChanged: component.updateData(matchDataManager.matchData)
         onShowFinalScoreReq: {
             var matchState = matchDataManager.matchData.state
-            if(matchState !== "end" && matchState !=="pause")
+            if(matchState !== "end" && matchState !=="pause" && matchState !=="init")
                 return
             finalScore.state = "visible"
         }
@@ -58,7 +58,8 @@ Item {
 
         var matchStates = {
             "end": "KONEC ZÁPASU",
-            "pause": "POLOČAS"
+            "pause": "POLOČAS",
+            "init": "ZAČÁTEK ZÁPASU"
         }
 
         if(data.state in matchStates)

@@ -14,6 +14,7 @@ Item {
 
     Text {
         id: internalText
+        antialiasing: true
         anchors.fill: parent
     }
 

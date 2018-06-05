@@ -16,6 +16,7 @@ Item {
     Text {
         id: monospaced
 
+        antialiasing: true
         text: repeat(monospaceReference, component.text.length)
         opacity: 0
         font: component.font
@@ -32,6 +33,7 @@ Item {
         id: content
 
         x: (parent.width - width) / 2 + font.pixelSize / 10
+        antialiasing: true
         font: component.font
         anchors.verticalCenter: parent.verticalCenter
     }

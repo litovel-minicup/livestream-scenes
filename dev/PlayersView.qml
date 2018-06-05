@@ -77,6 +77,7 @@ Item {
             id: teamNameText
 
             color: component.titleBarTextColor
+            antialiasing: true
 
             font.family: "Montserrat"
             font.pixelSize: parent.height * 0.8
@@ -122,7 +123,7 @@ Item {
                     Row {
                         id: row
 
-                        Text { text: "["; font: playerName.font; color: component.bracketsColor }
+                        Text { text: "["; font: playerName.font; color: component.bracketsColor; antialiasing: true }
                         MonospacedText {
                             id: playerNumber
 
@@ -130,13 +131,14 @@ Item {
                             color: playerName.color
                             font: playerName.font
                         }
-                        Text { text: "]"; font: playerName.font; color: component.bracketsColor }
+                        Text { text: "]"; font: playerName.font; color: component.bracketsColor; antialiasing: true }
                         Text {      // Align with monospaced hack
                             text: (modelData.number < 10 ) ?
                                       playerNumber.monospaceEndReference :""
                             font: playerName.font
                             color: component.bracketsColor
                             opacity: 0
+                            antialiasing: true
                         }
 
                         Text {
@@ -144,6 +146,7 @@ Item {
 
                             text: " " + modelData.name
                             color: component.contentTextColor
+                            antialiasing: true
 
                             font.family: "Montserrat"
                             font.pixelSize: component.height / 12

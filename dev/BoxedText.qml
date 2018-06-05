@@ -43,6 +43,7 @@ Item {
     Text {
         id: text
 
+        antialiasing: true
         font.pixelSize: component.height - 2 * component.vPadding
         anchors.centerIn: parent
 

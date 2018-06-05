@@ -28,6 +28,7 @@ Item {
             if(matchDataManager.matchData.last_shooter.team_name !== null &&
                     matchDataManager.matchData.last_shooter.team_name !== undefined)
                 shooterView.state = "visible"
+            timer.start()
         }
         onHideShooterReq: shooterView.state = "hidden"
     }
@@ -35,6 +36,18 @@ Item {
     ShooterView {
         id: shooterView
         anchors.fill: parent
+    }
+
+    Timer {
+        id: timer
+
+        running: false
+        interval: 5000
+        triggeredOnStart: false
+        onTriggered: {
+            timer.stop()
+            shooterView.state = "hidden"
+        }
     }
 
     function updateData(data) {

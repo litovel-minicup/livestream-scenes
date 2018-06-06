@@ -121,7 +121,7 @@ Item {
 
                 width: parent.width
                 height: parent.height
-                style: (component.homeTeamScore > component.awayTeamScore)
+                style: (component.homeTeamScore > component.awayTeamScore && matchState == "KONEC ZÁPASU")
                        ?internal.winTeamNameStyle :internal.teamNamesStyle
 
                 text.text: component.homeTeamName
@@ -160,7 +160,7 @@ Item {
 
                 width: parent.width
                 height: parent.height
-                style: (component.awayTeamScore > component.homeTeamScore)
+                style: (component.awayTeamScore > component.homeTeamScore && matchState == "KONEC ZÁPASU")
                        ?internal.winTeamNameStyle :internal.teamNamesStyle
 
                 text.text: component.awayTeamName
@@ -193,7 +193,7 @@ Item {
                 text: component.matchState
                 color: "white"
                 font.family: "Montserrat Light"
-                font.pixelSize: parent.height * 0.65
+                font.pixelSize: parent.height * 0.55
 
                 anchors.centerIn: parent
             }

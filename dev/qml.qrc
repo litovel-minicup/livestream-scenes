@@ -16,5 +16,7 @@
         <file>StyledTextStyle.qml</file>
         <file>sceneShooter.qml</file>
         <file>ShooterView.qml</file>
+        <file>scenePreview.qml</file>
+        <file>logo.svg</file>
     </qresource>
 </RCC>

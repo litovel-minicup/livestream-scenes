@@ -46,7 +46,7 @@ Item {
     function updateData(data) {
         finalScore.homeTeamName = data.home_team_name;
         finalScore.awayTeamName = data.away_team_name;
-        if(data.score !== null) {
+        if(data.score[0] !== null) {
             finalScore.homeTeamScore = data.score[0];
             finalScore.awayTeamScore = data.score[1];
         }

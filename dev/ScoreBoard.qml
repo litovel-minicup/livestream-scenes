@@ -6,174 +6,187 @@ Item {
     property alias size: component.height
 
     // TODO change defaults
-    property string teamHome: "LIT"
-    property string teamAway: "DUK"
+    property string teamHome: "DUK"
+    property string teamAway: "TEL"
     property int teamHomeScore: 0
     property int teamAwayScore: 0
-    property color teamHomeColor: "black"
-    property color teamAwayColor: "red"
-    property int animationsDuration: 350
+    property color teamHomeColor: "#631427"
+    property color teamAwayColor: "#00339c"
+    property int animationsDuration: 350 * 1
+    property int textAnimationsDuration: 120 * 1
+    property int sideAnimationDelay: 200 * 1
 
     property int half: 1
     property string time: "00:00"
 
-    width: teamHomeBox.width + scoreBox.width + teamAwayBox.width
-    state: "compact"
+    width: component.size * 3.6
+    state: "full"
 
     QtObject {
         id: internal
 
-        readonly property BoxedTextStyle homeTeamStyle: BoxedTextStyle {
-            hPadding: component.size / 11.8
-            vPadding: hPadding
+        readonly property StyledTextStyle homeTeamStyle: StyledTextStyle {
             textColor: "white"
             color: component.teamHomeColor
-            font.family: "Cairo Light"
+            font.family: "High School USA Sans"
         }
 
-        readonly property BoxedTextStyle awayTeamStyle: BoxedTextStyle {
-            hPadding: component.size / 11.8
-            vPadding: hPadding
+        readonly property StyledTextStyle awayTeamStyle: StyledTextStyle {
             textColor: "white"
             color: component.teamAwayColor
-            font.family: "Cairo Light"
+            font.family: "High School USA Sans"
         }
 
         readonly property StyledTextStyle scoreStyle: StyledTextStyle {
             textColor: "black"
             color: "white"
-            font.family: "Cairo Black"
+            font.family: "Saira Black"
         }
 
         readonly property StyledTextStyle timeStyle: StyledTextStyle {
             textColor: "white"
             color: "#1df276"
-            font.family: "Montserrat"
+            font.family: "Saira"
         }
     }
 
     states: [
         State {
-            name: "_compact"
-            PropertyChanges {
-                target: teamHomeBox
-                anchors.rightMargin: -scoreBox.width / 2
-            }
-            PropertyChanges {
-                target: teamAwayBox
-                anchors.leftMargin: -scoreBox.width / 2
-            }
-            PropertyChanges { target: timeBox;
-                anchors.topMargin: -timeBox.height; opacity: 0 }
-        },
-
-        State {
-            name: "compact"
-            extend: "_compact"
-
-            PropertyChanges { target: component; opacity: 1 }
-            PropertyChanges { target: scoreBox; opacity: 1 }
-        },
-
-        State {
             name: "full"
-            PropertyChanges { target: component; opacity: 1 }
-            PropertyChanges { target: scoreBox; opacity: 1 }
-            PropertyChanges { target: teamHomeBox; anchors.rightMargin: 0 }
-            PropertyChanges { target: teamAwayBox; anchors.rightMargin: 0 }
-            PropertyChanges { target: timeBox; anchors.topMargin: 0; opacity: 1}
+            PropertyChanges {
+                target: scoreBox.mask
+                sideAnchor: "bottom"
+                height: scoreBox.height
+            }
+            PropertyChanges { target: scoreBox.text; opacity: 1 }
+
+            PropertyChanges {
+                target: teamAwayBox.mask
+                sideAnchor: "left"
+                width: teamAwayBox.width
+            }
+            PropertyChanges { target: teamAwayBox.text; opacity: 1 }
+
+            PropertyChanges {
+                target: teamHomeBox.mask
+                sideAnchor: "right"
+                width: teamHomeBox.width
+            }
+            PropertyChanges { target: teamHomeBox.text; opacity: 1 }
+
+            PropertyChanges {
+                target: timeBox.mask
+                sideAnchor: "bottom"
+                height: timeBox.height
+            }
+            PropertyChanges { target: timeBox.text; opacity: 1 }
         },
 
         State {
             name: "hidden"
-            extend: "_compact"
-            PropertyChanges { target: scoreBox; opacity: 0 }
-            PropertyChanges { target: component; opacity: 0 }
+            PropertyChanges {
+                target: scoreBox.mask
+                sideAnchor: "top"
+                height: 0
+            }
+            PropertyChanges { target: scoreBox.text; opacity: 0 }
+
+            PropertyChanges {
+                target: teamHomeBox.mask
+                sideAnchor: "left"
+                width: 0
+            }
+            PropertyChanges { target: teamHomeBox.text; opacity: 0 }
+
+            PropertyChanges {
+                target: teamAwayBox.mask
+                sideAnchor: "right"
+                width: 0
+            }
+            PropertyChanges { target: teamAwayBox.text; opacity: 0 }
+
+            PropertyChanges {
+                target: timeBox.mask
+                sideAnchor: "top"
+                height: 0
+            }
+            PropertyChanges { target: timeBox.text; opacity: 0 }
         }
 
     ]
 
     transitions: [
         Transition {
-            from: "compact"; to: "full"
-            SequentialAnimation {
-                ParallelAnimation {
-                    NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
-                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
-                    NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
-                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
-                }
-                NumberAnimation { target: timeBox; property: "opacity"; duration: 0 }
-                NumberAnimation { target: timeBox; property: "anchors.topMargin";
-                    duration: component.animationsDuration; easing.type: Easing.InOutQuad }
-            }
-        },
-
-        Transition {
-            from: "full"; to: "compact"
-            SequentialAnimation {
-                NumberAnimation { target: timeBox; property: "anchors.topMargin";
-                    duration: component.animationsDuration; easing.type: Easing.InOutQuad }
-                NumberAnimation { target: timeBox; property: "opacity"; duration: 0 }
-                ParallelAnimation {
-                    NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
-                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
-                    NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
-                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
-                }
-            }
-        },
-
-        Transition {
             from: "full"; to: "hidden"
-            SequentialAnimation {
-                NumberAnimation { target: timeBox; property: "anchors.topMargin";
-                    duration: component.animationsDuration; easing.type: Easing.InOutQuad }
-                NumberAnimation { target: timeBox; property: "opacity"; duration: 0 }
-                ParallelAnimation {
-                    NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
-                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
-                    NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
-                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
+            ParallelAnimation {
+                SequentialAnimation {
+                    NumberAnimation { target: timeBox.text; property: "opacity";
+                        duration: component.textAnimationsDuration }
+                    NumberAnimation { target: timeBox.mask; property: "height";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
                 }
-                NumberAnimation { target: scoreBox; property: "opacity"; duration : 0 }
-                NumberAnimation { target: component; property: "opacity"; duration : 250 }
+                SequentialAnimation {
+                    NumberAnimation { duration: component.sideAnimationDelay}
+                    NumberAnimation { target: teamHomeBox.text; property: "opacity";
+                        duration: component.textAnimationsDuration }
+                    NumberAnimation { target: teamHomeBox.mask; property: "width";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                }
+
+                SequentialAnimation {
+                    NumberAnimation { duration: 2 * component.sideAnimationDelay}
+                    NumberAnimation { target: teamAwayBox.text; property: "opacity";
+                        duration: component.textAnimationsDuration }
+                    NumberAnimation { target: teamAwayBox.mask; property: "width";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                }
+
+
+                SequentialAnimation {
+                    NumberAnimation { duration: component.animationsDuration
+                                                + 2 * component.sideAnimationDelay }
+                    NumberAnimation { target: scoreBox.text; property: "opacity";
+                        duration: component.textAnimationsDuration }
+                    NumberAnimation { target: scoreBox.mask; property: "height";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                }
             }
         },
 
         Transition {
             from: "hidden"; to: "full"
-            SequentialAnimation {
-                NumberAnimation { target: component; property: "opacity"; duration : 250 }
-                NumberAnimation { target: scoreBox; property: "opacity"; duration : 0 }
-                ParallelAnimation {
-                    NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
-                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
-                    NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
-                        duration: component.animationsDuration; easing.type: Easing.InOutQuad }
+            ParallelAnimation {
+                SequentialAnimation {
+                    NumberAnimation { target: scoreBox.mask; property: "height";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                    NumberAnimation { target: scoreBox.text; property: "opacity";
+                        duration: component.textAnimationsDuration }
                 }
-                NumberAnimation { target: timeBox; property: "opacity"; duration: 0 }
-                NumberAnimation { target: timeBox; property: "anchors.topMargin";
-                    duration: component.animationsDuration; easing.type: Easing.InOutQuad }
-            }
-        },
 
-        Transition {
-            from: "compact"; to: "hidden"
-            SequentialAnimation {
-                ParallelAnimation {
-                    NumberAnimation { target: scoreBox; property: "opacity"; duration : 250 }
+                SequentialAnimation {
+                    NumberAnimation { duration: component.animationsDuration }
+                    NumberAnimation { target: teamHomeBox.mask; property: "width";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                    NumberAnimation { target: teamHomeBox.text; property: "opacity";
+                        duration: component.textAnimationsDuration }
                 }
-                NumberAnimation { target: component; property: "opacity"; duration : 250 }
-            }
-        },
 
-        Transition {
-            from: "hidden"; to: "compact"
-            SequentialAnimation {
-                NumberAnimation { target: component; property: "opacity"; duration : 250 }
-                ParallelAnimation {
-                    NumberAnimation { target: scoreBox; property: "opacity"; duration : 250 }
+                SequentialAnimation {
+                    NumberAnimation { duration: component.sideAnimationDelay
+                                                + component.animationsDuration }
+                    NumberAnimation { target: teamAwayBox.mask; property: "width";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                    NumberAnimation { target: teamAwayBox.text; property: "opacity";
+                        duration: component.textAnimationsDuration }
+                }
+
+                SequentialAnimation {
+                    NumberAnimation { duration: component.animationsDuration
+                                                + 2 * component.sideAnimationDelay }
+                    NumberAnimation { target: timeBox.mask; property: "height";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                    NumberAnimation { target: timeBox.text; property: "opacity";
+                        duration: component.textAnimationsDuration }
                 }
             }
         }
@@ -189,25 +202,28 @@ Item {
         anchors.right: component.right
         anchors.top: component.top
 
-        BoxedText {
+        WrappedText {
             id: teamHomeBox
 
-            z: 1
-            size: parent.height
+            width: parent.width * 0.3062
+            height: parent.height
+
             text.text: component.teamHome
-            monospaceHack: true
+            text.font.pixelSize: height * 0.6
             style: internal.homeTeamStyle
 
             anchors.right: scoreBox.left
         }
 
-        BoxedText {
+        WrappedText {
             id: teamAwayBox
 
-            z: 1
-            size: parent.height
+//            x: scoreBox.x + scoreBox.width
+            width: parent.width * 0.3062
+            height: parent.height
+
             text.text: component.teamAway
-            monospaceHack: true
+            text.font.pixelSize: teamHomeBox.text.font.pixelSize
             style: internal.awayTeamStyle
 
             anchors.left: scoreBox.right
@@ -216,23 +232,26 @@ Item {
         WrappedText {
             id: scoreBox
 
-            // TODO set width
-            x: teamHomeBox.width
-            width: 200
+            width: scorePanel.width - teamAwayBox.width - teamHomeBox.width
             height: teamAwayBox.height
-            text.font.pixelSize: teamAwayBox.text.font.pixelSize
+
             text.text: ('0' + component.teamHomeScore).slice(-2)
-                       + "-" + ('0' + component.teamAwayScore).slice(-2)
+                       + " - " + ('0' + component.teamAwayScore).slice(-2)
+            text.font.pixelSize: height * 0.579
             style: internal.scoreStyle
+
+            anchors.horizontalCenter: parent.horizontalCenter
         }
     }
 
     WrappedText {
         id: timeBox
 
-        text.text: component.time
         width: scoreBox.width
         height: component.height - scorePanel.height
+
+        text.text: component.time
+        text.font.pixelSize: height * 0.530
         style: internal.timeStyle
 
         anchors.top: scorePanel.bottom

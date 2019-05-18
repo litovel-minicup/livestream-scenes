@@ -18,12 +18,7 @@ Item {
         id: internal
 
         function stretchComponentWithText() {
-            var patt = /([0-8])/
-            var str = text.text
-            if(monospaceHack) {
-                while(str.match(patt))
-                    str = str.replace(patt, "9" + "$2")
-            }
+            var str = "A".repeat(text.text.length)
 
             fm.font = component.text.font
             component.width = Math.max(2 * component.hPadding + fm.advanceWidth(str),
@@ -57,7 +52,6 @@ Item {
     onStyleChanged: {
         if(!component.style)
             return
-
         component.vPadding = Qt.binding(function() { return component.style.vPadding })
         component.hPadding = Qt.binding(function() { return component.style.hPadding })
         component.text.font.family = Qt.binding(function() { return component.style.font.family })

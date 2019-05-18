@@ -18,6 +18,25 @@
         <file>ShooterView.qml</file>
         <file>scenePreview.qml</file>
         <file>logo.svg</file>
+        <file>font/mc_font.otf</file>
+        <file>font/Saira-Black.ttf</file>
+        <file>font/Saira-Regular.ttf</file>
         <file>MaskedClipper.qml</file>
+        <file>mc-club-logos-2019/2019/dukla-praha.png</file>
+        <file>mc-club-logos-2019/2019/hk-ivancice.png</file>
+        <file>mc-club-logos-2019/2019/horka-nad-moravou.png</file>
+        <file>mc-club-logos-2019/2019/kostelec-na-hane.png</file>
+        <file>mc-club-logos-2019/2019/lions-hostivice.png</file>
+        <file>mc-club-logos-2019/2019/praha-chodov.png</file>
+        <file>mc-club-logos-2019/2019/sk-zeravice.png</file>
+        <file>mc-club-logos-2019/2019/sokol-telnice.png</file>
+        <file>mc-club-logos-2019/2019/tatran-litovel.png</file>
+        <file>mc-club-logos-2019/2019/tj-nachod.png</file>
+        <file>mc-club-logos-2019/2019/tj-nachod-a.png</file>
+        <file>mc-club-logos-2019/2019/tj-nachod-b.png</file>
+        <file>mc-club-logos-2019/2019/valasske-mezirici.png</file>
+        <file>mc-club-logos-2019/2019/velka-bystrice.png</file>
+        <file>mc-club-logos-2019/2019/velke-mezirici.png</file>
+        <file>mc-club-logos-2019/2019/litovel-minicup.png</file>
     </qresource>
 </RCC>

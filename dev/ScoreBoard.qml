@@ -10,47 +10,45 @@ Item {
     property string teamAway: "DUK"
     property int teamHomeScore: 0
     property int teamAwayScore: 0
+    property color teamHomeColor: "black"
+    property color teamAwayColor: "red"
     property int animationsDuration: 350
 
     property int half: 1
-    property string time: "0:00"
+    property string time: "00:00"
 
-    width: teamHomeBox.width + teamHomeScoreBox.width + teamAwayBox.width + teamAwayScoreBox.width
+    width: teamHomeBox.width + scoreBox.width + teamAwayBox.width
     state: "compact"
 
     QtObject {
         id: internal
 
-        readonly property BoxedTextStyle teamsStyle: BoxedTextStyle {
+        readonly property BoxedTextStyle homeTeamStyle: BoxedTextStyle {
             hPadding: component.size / 11.8
             vPadding: hPadding
             textColor: "white"
-            color: "#1a75bc"
-            font.family: "Montserrat Light"
+            color: component.teamHomeColor
+            font.family: "Cairo Light"
         }
 
-        readonly property BoxedTextStyle scoreStyle: BoxedTextStyle {
+        readonly property BoxedTextStyle awayTeamStyle: BoxedTextStyle {
             hPadding: component.size / 11.8
             vPadding: hPadding
+            textColor: "white"
+            color: component.teamAwayColor
+            font.family: "Cairo Light"
+        }
+
+        readonly property StyledTextStyle scoreStyle: StyledTextStyle {
             textColor: "black"
-            color: "#cecece"
+            color: "white"
+            font.family: "Cairo Black"
+        }
+
+        readonly property StyledTextStyle timeStyle: StyledTextStyle {
+            textColor: "white"
+            color: "#1df276"
             font.family: "Montserrat"
-        }
-
-        readonly property BoxedTextStyle halfStyle: BoxedTextStyle {
-            hPadding: component.size / 7.2
-            vPadding: component.size / 11.8
-            textColor: "white"
-            color: "#636363"
-            font.family: "Montserrat Light"
-        }
-
-        readonly property BoxedTextStyle timeStyle: BoxedTextStyle {
-            hPadding: component.size / 7.2
-            vPadding: component.size / 11.8
-            textColor: "white"
-            color: "#474747"
-            font.family: "Montserrat Light"
         }
     }
 
@@ -59,12 +57,14 @@ Item {
             name: "_compact"
             PropertyChanges {
                 target: teamHomeBox
-                anchors.rightMargin: -teamHomeScoreBox.width + internal.scoreStyle.hPadding / 5 }
+                anchors.rightMargin: -scoreBox.width / 2
+            }
             PropertyChanges {
                 target: teamAwayBox
-                anchors.leftMargin: -teamAwayScoreBox.width + internal.scoreStyle.hPadding / 5 }
-            PropertyChanges { target: timePanel;
-                anchors.topMargin: -timePanel.height; opacity: 0 }
+                anchors.leftMargin: -scoreBox.width / 2
+            }
+            PropertyChanges { target: timeBox;
+                anchors.topMargin: -timeBox.height; opacity: 0 }
         },
 
         State {
@@ -72,25 +72,22 @@ Item {
             extend: "_compact"
 
             PropertyChanges { target: component; opacity: 1 }
-            PropertyChanges { target: teamAwayScoreBox; opacity: 1 }
-            PropertyChanges { target: teamHomeScoreBox; opacity: 1 }
+            PropertyChanges { target: scoreBox; opacity: 1 }
         },
 
         State {
             name: "full"
             PropertyChanges { target: component; opacity: 1 }
-            PropertyChanges { target: teamAwayScoreBox; opacity: 1 }
-            PropertyChanges { target: teamHomeScoreBox; opacity: 1 }
+            PropertyChanges { target: scoreBox; opacity: 1 }
             PropertyChanges { target: teamHomeBox; anchors.rightMargin: 0 }
             PropertyChanges { target: teamAwayBox; anchors.rightMargin: 0 }
-            PropertyChanges { target: timePanel; anchors.topMargin: 0; opacity: 1}
+            PropertyChanges { target: timeBox; anchors.topMargin: 0; opacity: 1}
         },
 
         State {
             name: "hidden"
             extend: "_compact"
-            PropertyChanges { target: teamAwayScoreBox; opacity: 0 }
-            PropertyChanges { target: teamHomeScoreBox; opacity: 0 }
+            PropertyChanges { target: scoreBox; opacity: 0 }
             PropertyChanges { target: component; opacity: 0 }
         }
 
@@ -106,8 +103,8 @@ Item {
                     NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
                         duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                 }
-                NumberAnimation { target: timePanel; property: "opacity"; duration: 0 }
-                NumberAnimation { target: timePanel; property: "anchors.topMargin";
+                NumberAnimation { target: timeBox; property: "opacity"; duration: 0 }
+                NumberAnimation { target: timeBox; property: "anchors.topMargin";
                     duration: component.animationsDuration; easing.type: Easing.InOutQuad }
             }
         },
@@ -115,9 +112,9 @@ Item {
         Transition {
             from: "full"; to: "compact"
             SequentialAnimation {
-                NumberAnimation { target: timePanel; property: "anchors.topMargin";
+                NumberAnimation { target: timeBox; property: "anchors.topMargin";
                     duration: component.animationsDuration; easing.type: Easing.InOutQuad }
-                NumberAnimation { target: timePanel; property: "opacity"; duration: 0 }
+                NumberAnimation { target: timeBox; property: "opacity"; duration: 0 }
                 ParallelAnimation {
                     NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
                         duration: component.animationsDuration; easing.type: Easing.InOutQuad }
@@ -130,17 +127,16 @@ Item {
         Transition {
             from: "full"; to: "hidden"
             SequentialAnimation {
-                NumberAnimation { target: timePanel; property: "anchors.topMargin";
+                NumberAnimation { target: timeBox; property: "anchors.topMargin";
                     duration: component.animationsDuration; easing.type: Easing.InOutQuad }
-                NumberAnimation { target: timePanel; property: "opacity"; duration: 0 }
+                NumberAnimation { target: timeBox; property: "opacity"; duration: 0 }
                 ParallelAnimation {
                     NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
                         duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                     NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
                         duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                 }
-                NumberAnimation { target: teamAwayScoreBox; property: "opacity"; duration : 0 }
-                NumberAnimation { target: teamHomeScoreBox; property: "opacity"; duration : 0 }
+                NumberAnimation { target: scoreBox; property: "opacity"; duration : 0 }
                 NumberAnimation { target: component; property: "opacity"; duration : 250 }
             }
         },
@@ -149,16 +145,15 @@ Item {
             from: "hidden"; to: "full"
             SequentialAnimation {
                 NumberAnimation { target: component; property: "opacity"; duration : 250 }
-                NumberAnimation { target: teamAwayScoreBox; property: "opacity"; duration : 0 }
-                NumberAnimation { target: teamHomeScoreBox; property: "opacity"; duration : 0 }
+                NumberAnimation { target: scoreBox; property: "opacity"; duration : 0 }
                 ParallelAnimation {
                     NumberAnimation { target: teamHomeBox; property: "anchors.rightMargin"
                         duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                     NumberAnimation { target: teamAwayBox; property: "anchors.leftMargin"
                         duration: component.animationsDuration; easing.type: Easing.InOutQuad }
                 }
-                NumberAnimation { target: timePanel; property: "opacity"; duration: 0 }
-                NumberAnimation { target: timePanel; property: "anchors.topMargin";
+                NumberAnimation { target: timeBox; property: "opacity"; duration: 0 }
+                NumberAnimation { target: timeBox; property: "anchors.topMargin";
                     duration: component.animationsDuration; easing.type: Easing.InOutQuad }
             }
         },
@@ -167,8 +162,7 @@ Item {
             from: "compact"; to: "hidden"
             SequentialAnimation {
                 ParallelAnimation {
-                    NumberAnimation { target: teamAwayScoreBox; property: "opacity"; duration : 250 }
-                    NumberAnimation { target: teamHomeScoreBox; property: "opacity"; duration : 250 }
+                    NumberAnimation { target: scoreBox; property: "opacity"; duration : 250 }
                 }
                 NumberAnimation { target: component; property: "opacity"; duration : 250 }
             }
@@ -179,8 +173,7 @@ Item {
             SequentialAnimation {
                 NumberAnimation { target: component; property: "opacity"; duration : 250 }
                 ParallelAnimation {
-                    NumberAnimation { target: teamAwayScoreBox; property: "opacity"; duration : 250 }
-                    NumberAnimation { target: teamHomeScoreBox; property: "opacity"; duration : 250 }
+                    NumberAnimation { target: scoreBox; property: "opacity"; duration : 250 }
                 }
             }
         }
@@ -190,7 +183,7 @@ Item {
         id: scorePanel
 
         z: 1
-        height: component.height / 1.8
+        height: component.height * 0.5
 
         anchors.left: component.left
         anchors.right: component.right
@@ -202,9 +195,10 @@ Item {
             z: 1
             size: parent.height
             text.text: component.teamHome
-            style: internal.teamsStyle
+            monospaceHack: true
+            style: internal.homeTeamStyle
 
-            anchors.right: teamHomeScoreBox.left
+            anchors.right: scoreBox.left
         }
 
         BoxedText {
@@ -213,60 +207,35 @@ Item {
             z: 1
             size: parent.height
             text.text: component.teamAway
-            style: internal.teamsStyle
+            monospaceHack: true
+            style: internal.awayTeamStyle
 
-            anchors.left: teamAwayScoreBox.right
+            anchors.left: scoreBox.right
         }
 
-        BoxedText {
-            id: teamHomeScoreBox
+        WrappedText {
+            id: scoreBox
 
+            // TODO set width
             x: teamHomeBox.width
-            size: parent.height
-            monospaceHack: true
-            text.text: component.teamHomeScore
+            width: 200
+            height: teamAwayBox.height
+            text.font.pixelSize: teamAwayBox.text.font.pixelSize
+            text.text: ('0' + component.teamHomeScore).slice(-2)
+                       + "-" + ('0' + component.teamAwayScore).slice(-2)
             style: internal.scoreStyle
-        }
-
-        BoxedText {
-            id: teamAwayScoreBox
-
-            size: parent.height
-            monospaceHack: true
-            text.text: component.teamAwayScore
-            style: internal.scoreStyle
-
-            anchors.left: teamHomeScoreBox.right
         }
     }
 
-    Item {
-        id: timePanel
+    WrappedText {
+        id: timeBox
 
-        x: teamHomeScoreBox.x + (teamHomeScoreBox.width + teamAwayScoreBox.width) / 2 - width / 2
-        width: halfBox.width + timeBox.width
+        text.text: component.time
+        width: scoreBox.width
         height: component.height - scorePanel.height
+        style: internal.timeStyle
 
         anchors.top: scorePanel.bottom
-
-        BoxedText {
-            id: halfBox
-
-            text.text: component.half.toString() + "/2"
-            monospaceHack: true
-            size: parent.height
-            style: internal.halfStyle
-        }
-
-        BoxedText {
-            id: timeBox
-
-            text.text: component.time
-            monospaceHack: true
-            size: parent.height
-            style: internal.timeStyle
-
-            anchors.left: halfBox.right
-        }
+        anchors.horizontalCenter: scorePanel.horizontalCenter
     }
 }

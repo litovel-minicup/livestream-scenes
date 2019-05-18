@@ -18,5 +18,6 @@
         <file>ShooterView.qml</file>
         <file>scenePreview.qml</file>
         <file>logo.svg</file>
+        <file>MaskedClipper.qml</file>
     </qresource>
 </RCC>

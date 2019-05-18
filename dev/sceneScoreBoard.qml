@@ -14,17 +14,23 @@ Item {
     }
 
     FontLoader {
-        source: "montserrat-light.ttf"
+        // High School USA Sans
+        source: "font/mc_font.otf"
     }
 
     FontLoader {
-        source: "montserrat-regular.ttf"
+        // Saira Black
+        source: "font/Saira-Black.ttf"
+    }
+
+    FontLoader {
+        // Saira
+        source: "font/Saira-Regular.ttf"
     }
 
     Connections {
         target: matchDataManager
         onMatchDataChanged: component.updateData(matchDataManager.matchData)
-        onShowCompactScoreBoardReq: scoreBoard.state = "compact"
         onShowFullScoreBoardReq: scoreBoard.state = "full"
         onHideScoreBoardReq: scoreBoard.state = "hidden"
     }
@@ -39,7 +45,7 @@ Item {
         id: scoreBoard
 
         size: parent.height * 0.75
-        state: "compact"
+        state: "full"
 
         anchors.left: offset.right
         anchors.top: offset.bottom
@@ -66,7 +72,7 @@ Item {
 
         if(matchState === "end" || matchState === "init" || matchState === "pause") {
             passedSecs = (matchState === "end") ?halfDuration :0
-            scoreBoard.half = (matchState === "end" || matchState == "pause") ?2 :1
+            //scoreBoard.half = (matchState === "end" || matchState == "pause") ?2 :1
             matchTimer.running = false
         }
 
@@ -76,7 +82,7 @@ Item {
             passedSecs = Date.now() / 1000 - (start + data.time_diff)
             passedSecs = (passedSecs < 0) ?0 :passedSecs
             passedSecs = (passedSecs > halfDuration) ?halfDuration :passedSecs
-            scoreBoard.half = (matchState === "half_second") ?2 :1
+            //scoreBoard.half = (matchState === "half_second") ?2 :1
             if(!matchTimer.running)
                 matchTimer.running = true
 
@@ -84,23 +90,27 @@ Item {
 
         time.setMinutes(Math.floor(passedSecs / 60))
         time.setSeconds(passedSecs % 60)
-        scoreBoard.time = Qt.formatTime(time, "m:ss")
+        scoreBoard.time = Qt.formatTime(time, "mm:ss")
     }
 
     function updateData(data) {
         // setting team names
         scoreBoard.teamHome = data.home_team_abbr
+        scoreBoard.teamHomeColor = data.home_team_color_primary
+
         scoreBoard.teamAway = data.away_team_abbr
+        scoreBoard.teamAwayColor = data.away_team_color_primary
 
         // setting score
         if(data.score[0] !== null && data.score[1] !== null) {
-            scoreBoard.state = "full"
             scoreBoard.teamAwayScore = data.score[1]
             scoreBoard.teamHomeScore = data.score[0]
         }
 
-        else
-            scoreBoard.state = "compact"
+        else {
+            scoreBoard.teamAwayScore = 0
+            scoreBoard.teamHomeScore = 0
+        }
 
         // setting time
         scoreBoardSetTime()

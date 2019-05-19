@@ -38,5 +38,6 @@
         <file>mc-club-logos-2019/2019/velka-bystrice.png</file>
         <file>mc-club-logos-2019/2019/velke-mezirici.png</file>
         <file>mc-club-logos-2019/2019/litovel-minicup.png</file>
+        <file>SideAnchoredRect.qml</file>
     </qresource>
 </RCC>

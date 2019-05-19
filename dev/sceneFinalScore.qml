@@ -14,11 +14,20 @@ Item {
     }
 
     FontLoader {
-        source: "montserrat-light.ttf"
+        // High School USA Sans
+        source: "font/mc_font.otf"
     }
 
+
     FontLoader {
-        source: "montserrat-regular.ttf"
+        // Saira Black
+        source: "font/Saira-Black.ttf"
+    }
+
+
+    FontLoader {
+        // Saira
+        source: "font/Saira-Regular.ttf"
     }
 
     Connections {
@@ -28,41 +37,50 @@ Item {
             var matchState = matchDataManager.matchData.state
             if(matchState !== "end" && matchState !=="pause" && matchState !=="init")
                 return
-            finalScore.state = "visible"
+            finalScore.state = "full"
         }
         onHideFinalScoreReq: finalScore.state = "hidden"
     }
 
-    FinalScore {
+
+
+    ScoreStrip {
         id: finalScore
+        width: parent.width
 
         state: "hidden"
-        width: height * 5
-        height: parent.height
-
-        anchors.centerIn: parent
     }
 
     function updateData(data) {
-        finalScore.homeTeamName = data.home_team_name;
-        finalScore.awayTeamName = data.away_team_name;
+        finalScore.teamHome = data.home_team_name;
+        finalScore.teamHomeSlug = data.home_team_slug
+        finalScore.teamHomeColor = data.home_team_color_secondary
+        finalScore.teamHomeBackgroundColor = data.home_team_color_primary
+
+        finalScore.teamAway = data.away_team_name;
+        finalScore.teamAwaySlug = data.away_team_slug
+        finalScore.teamAwayColor = data.away_team_color_secondary
+        finalScore.teamAwayBackgroundColor = data.away_team_color_primary
+
         if(data.score[0] !== null) {
-            finalScore.homeTeamScore = data.score[0];
-            finalScore.awayTeamScore = data.score[1];
+            finalScore.teamHomeScore = data.score[0];
+            finalScore.teamAwayScore = data.score[1];
         }
 
         else {
-            finalScore.homeTeamScore = 0;
-            finalScore.awayTeamScore = 0;
+            finalScore.teamHomeScore = 0;
+            finalScore.teamAwayScore = 0;
         }
 
         var matchStates = {
-            "end": "KONEC ZÁPASU",
+            "end": "KONEC",
             "pause": "POLOČAS",
-            "init": "ZAČÁTEK ZÁPASU"
+            "init": "ZAČÁTEK"
         }
 
         if(data.state in matchStates)
             finalScore.matchState = matchStates[data.state];
+        else
+            finalScore.matchState = "";
     }
 }

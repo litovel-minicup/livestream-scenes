@@ -34,7 +34,7 @@ Item {
         }
 
         readonly property StyledTextStyle timeStyle: StyledTextStyle {
-            textColor: "white"
+            textColor: "black"
             color: "#1df276"
             font.family: "Saira"
         }
@@ -322,7 +322,7 @@ Item {
         height: component.height - scorePanel.height
 
         text.text: component.matchState
-        text.font.pixelSize: height * 0.47
+        text.font.pixelSize: height * 0.49
         style: internal.timeStyle
 
         anchors.top: scorePanel.bottom

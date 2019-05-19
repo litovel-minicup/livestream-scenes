@@ -43,7 +43,6 @@ Item {
     }
 
 
-
     ScoreStrip {
         id: finalScore
         width: parent.width

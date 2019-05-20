@@ -8,6 +8,15 @@ Rectangle {
     property int spacing: 0
     property int titleTextPixelSize: 0
 
+    property string teamName: ""
+    property string teamSlug: ""
+    property int teamWins: 0
+    property int teamLoses: 0
+    property int teamTies: 0
+    property string teamScore: ""
+    property int teamPoints: 0
+    property color textColor: "black"
+
     color: "white"
 
     // Bottom Line
@@ -29,6 +38,8 @@ Rectangle {
 
             linkedTextFont.family: "Saira"
             linkedTextFont.pixelSize: component.titleTextPixelSize
+
+            text.color: component.textColor
         }
     }
 
@@ -52,7 +63,7 @@ Rectangle {
 
             onLoaded: {
                 item.linkedText = "#"
-                item.text.text = rowIndex + 5 + "."
+                item.text.text = rowIndex + 1 + "."
                 item.text.anchors.right = item.text.parent.right
                 item.text.anchors.rightMargin = -item.fm.advanceWidth(".")
             }
@@ -64,7 +75,7 @@ Rectangle {
             Layout.leftMargin: layout.spacing
 
             Image {
-                source: "mc-club-logos-2019/2019/" + "dukla-praha" + ".png"
+                source: "mc-club-logos-2019/2019/" + component.teamSlug + ".png"
 
                 fillMode: Image.PreserveAspectFit
                 mipmap: true
@@ -73,7 +84,8 @@ Rectangle {
         }
 
         Text {
-            text: "horka nad moravou"
+            text: component.teamName
+            color: component.textColor
             font.family: "High School USA Sans"
             font.pixelSize: parent.height * 0.462
         }
@@ -88,7 +100,7 @@ Rectangle {
             height: parent.height
             onLoaded: {
                 item.linkedText = "V"
-                item.text.text = "12"
+                item.text.text = Qt.binding(function() { return component.teamWins })
                 item.text.anchors.horizontalCenter = item.text.parent.horizontalCenter
             }
         }
@@ -98,7 +110,7 @@ Rectangle {
             height: parent.height
             onLoaded: {
                 item.linkedText = "P"
-                item.text.text = "12"
+                item.text.text = Qt.binding(function() { return component.teamLoses })
                 item.text.anchors.horizontalCenter = item.text.parent.horizontalCenter
             }
         }
@@ -108,7 +120,7 @@ Rectangle {
             height: parent.height
             onLoaded: {
                 item.linkedText = "R"
-                item.text.text = "12"
+                item.text.text = Qt.binding(function() { return component.teamTies })
                 item.text.anchors.horizontalCenter = item.text.parent.horizontalCenter
             }
         }
@@ -119,7 +131,7 @@ Rectangle {
             Layout.leftMargin: layout.spacing
             onLoaded: {
                 item.linkedText = "skóre"
-                item.text.text = "12"
+                item.text.text = Qt.binding(function() { return component.teamScore })
                 item.text.anchors.horizontalCenter = item.text.parent.horizontalCenter
             }
         }
@@ -130,7 +142,7 @@ Rectangle {
             Layout.leftMargin: layout.spacing
             onLoaded: {
                 item.linkedText = "body"
-                item.text.text = "12"
+                item.text.text = Qt.binding(function() { return component.teamPoints })
                 item.text.anchors.horizontalCenter = item.text.parent.horizontalCenter
             }
         }

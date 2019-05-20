@@ -5,7 +5,8 @@ Item {
 
     property Component rowComponent
     property Component titleComponent: Item {}
-    property int rowCount: 6
+    property int visibleRowCount: 6
+    property int rowCount: 12
     property alias title: title
     property int titleHeight: height * 0.125
 
@@ -21,7 +22,7 @@ Item {
         }
 
         Repeater {
-            model: rowCount
+            model: visibleRowCount
 
             Loader {
                 readonly property int rowIndex: index
@@ -29,7 +30,7 @@ Item {
                 sourceComponent: component.rowComponent
 
                 width: component.width
-                height: (component.height - component.titleHeight) / component.rowCount
+                height: (component.height - component.titleHeight) / component.visibleRowCount
             }
         }
     }

@@ -37,14 +37,14 @@ Item {
 
     Item {
         id: offset
-        width: height
-        height: parent.height * 0.25
+        width: scoreBoard.width * 0.3062
+        height: scoreBoard.height / 2.
     }
 
     ScoreBoard {
         id: scoreBoard
 
-        size: parent.height * 0.75
+        size: parent.height * 0.66
         state: "full"
 
         anchors.left: offset.right

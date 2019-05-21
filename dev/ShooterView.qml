@@ -1,150 +1,256 @@
-import QtQuick 2.0
+import QtQuick 2.12
 
 Item {
     id: component
 
-    property string playerName: "Pepča Kolo"
+    property string playerName: "Pepa kolo"
     property string teamName: "Litovel"
-    property string playerNumber: "0"
-    property int showDelay: 0
+    property string slug: "dukla-praha"
+    property color primaryColor: "#670f1b"
+    property color secondaryColor: "#fcc824"
+
+    property int animationsDuration: 250 * 1
+    property int textAnimationsDuration: 120 * 1
+    property int sideAnimationDelay: 150* 1
 
     state: "hidden"
 
     QtObject {
         id: internal
 
-        readonly property int animationsDuration: 800 * 0.6
-        readonly property int opacityAnimationsDuration: 400 * 0.6
+        property int maxTextWidth: 0
 
-        readonly property BoxedTextStyle playerNumberStyle: BoxedTextStyle {
-            vPadding: component.height / 9.
-            hPadding: component.height / 7.2
-            textColor: "#8A6D1C"
-            color: "#F8CF00"
-            font.family: "Montserrat"
-        }
+        function updateMaxWidth() {
+            if(!playerName || !teamName)
+                return
 
-        readonly property BoxedTextStyle playerNameStyle: BoxedTextStyle {
-            vPadding: component.height / 12.
-            hPadding: component.height / 6.
-            textColor: "#4E4A49"
-            color: "#D7D6D6"
-            font.family: "Montserrat"
-        }
-
-        readonly property BoxedTextStyle teamNameStyle: BoxedTextStyle {
-            vPadding: component.height / 25.71
-            hPadding: component.height / 5.14
-            textColor: "#D5D3D3"
-            color: "#696664"
-            font.family: "Montserrat"
+            internal.maxTextWidth = Math.max(
+                fmPlayerName.advanceWidth(playerName.text) + playerName.anchors.leftMargin,
+                fmTeamName.advanceWidth(teamName.text) + teamName.anchors.leftMargin
+            )
         }
     }
 
     states: [
         State {
             name: "hidden"
-            PropertyChanges { target: playerNumber; opacity: 0 }
-            PropertyChanges { target: playerName; x: -width }
-            PropertyChanges { target: teamName; y: -height }
+            PropertyChanges { target: logo; opacity: 0 }
+            PropertyChanges { target: teamName; opacity: 0 }
+            PropertyChanges { target: playerName; opacity: 0 }
+            PropertyChanges {
+                target: teamNameBackground
+                sideAnchor: "right"
+                width: 0
+            }
+            PropertyChanges {
+                target: playerNameBackground
+                sideAnchor: "right"
+                width: 0
+            }
+            PropertyChanges {
+                target: logoBackground
+                sideAnchor: "left"
+                width: 0
+            }
         },
         State {
-            name: "visible"
-            PropertyChanges { target: playerNumber; opacity: 1 }
-            PropertyChanges { target: playerName; x: 0 }
-            PropertyChanges { target: teamName; y: (component.teamName == "") ?-height :0 }
+            name: "full"
+            PropertyChanges { target: logo; opacity: 1 }
+            PropertyChanges { target: teamName; opacity: 1 }
+            PropertyChanges { target: playerName; opacity: 1 }
+            PropertyChanges {
+                target: teamNameBackground
+                sideAnchor: "left"
+                width: teamNameContainer.width
+            }
+            PropertyChanges {
+                target: playerNameBackground
+                sideAnchor: "left"
+                width: playerNameContainer.width
+            }
+            PropertyChanges {
+                target: logoBackground
+                sideAnchor: "right"
+                width: logoContainer.width
+            }
         }
     ]
 
     transitions: [
         Transition {
-            from: "visible"; to: "hidden"
+            from: "full"; to: "hidden"
             SequentialAnimation {
-                NumberAnimation { target: teamName; property: "y";
-                    duration: internal.animationsDuration; easing.type: Easing.InOutQuad }
-                NumberAnimation { target: playerName; property: "x"
-                    duration: internal.animationsDuration; easing.type: Easing.InOutQuad }
-                NumberAnimation { target: playerNumber; property: "opacity"
-                    duration: internal.opacityAnimationsDuration }
+                NumberAnimation { target: logo; property: "opacity";
+                    duration: component.textAnimationsDuration }
+                NumberAnimation { target: logoBackground; property: "width";
+                    duration: component.animationsDuration; easing.type: Easing.OutCubic }
+            }
+
+            ParallelAnimation {
+                SequentialAnimation {
+                    NumberAnimation { duration: component.sideAnimationDelay}
+                    NumberAnimation { target: playerName; property: "opacity";
+                        duration: component.textAnimationsDuration }
+                    NumberAnimation { target: playerNameBackground; property: "width";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                }
+
+                SequentialAnimation {
+                    NumberAnimation { duration: component.sideAnimationDelay * 2 }
+                    NumberAnimation { target: teamName; property: "opacity";
+                        duration: component.textAnimationsDuration }
+                    NumberAnimation { target: teamNameBackground; property: "width";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                }
             }
         },
         Transition {
-            from: "hidden"; to: "visible"
-            SequentialAnimation {
-                NumberAnimation { duration: component.showDelay }
-                NumberAnimation { target: playerNumber; property: "opacity"
-                    duration: internal.opacityAnimationsDuration }
-                NumberAnimation { target: playerName; property: "x"
-                    duration: internal.animationsDuration; easing.type: Easing.InOutQuad }
-                NumberAnimation { target: teamName; property: "y";
-                    duration: internal.animationsDuration; easing.type: Easing.InOutQuad }
+            from: "hidden"; to: "full"
+            ParallelAnimation {
+                SequentialAnimation {
+                    NumberAnimation { target: logoBackground; property: "width";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                    NumberAnimation { target: logo; property: "opacity";
+                        duration: component.textAnimationsDuration }
+                }
+
+                SequentialAnimation {
+                    NumberAnimation { duration: component.sideAnimationDelay }
+                    NumberAnimation { target: playerNameBackground; property: "width";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                    NumberAnimation { target: playerName; property: "opacity";
+                        duration: component.textAnimationsDuration }
+                }
+
+                SequentialAnimation {
+                    NumberAnimation { duration: component.sideAnimationDelay * 2 }
+                    NumberAnimation { target: teamNameBackground; property: "width";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                    NumberAnimation { target: teamName; property: "opacity";
+                        duration: component.textAnimationsDuration }
+                }
+
             }
         }
     ]
 
     Item {
-        id: playerNumberClipper
+        id: logoContainer
 
-        clip: true
-        height: (component.teamName == "") ?playerNameClipper.height :parent.height
-        width: playerNumber.width
+        height: parent.height
+        width: height * 1.14
 
-        BoxedText {
-            id: playerNumber
+//        color: "red"
 
-            text.text: component.playerNumber
-            size: parent.height
-            backgroundOpacity: 0.9
-            style: internal.playerNumberStyle
+        SideAnchoredRect {
+            id: logoBackground
+
+            color: component.primaryColor
+            width: parent.width
+            height: parent.height
+        }
+
+        Image {
+            id: logo
+
+            source: "mc-club-logos-2019/2019/" + component.slug + ".png"
+            width: height
+            height: 0.725 * parent.height
+            mipmap: true
+            fillMode: Image.PreserveAspectFit
+
+            anchors.centerIn: parent
+        }
+    }
+
+    FontMetrics {
+        id: fmPlayerName
+        font: playerName.font
+    }
+
+    FontMetrics {
+        id: fmTeamName
+        font: teamName.font
+    }
+
+    Item {
+        id: playerNameContainer
+
+        height: parent.height - teamNameContainer.height
+        width: internal.maxTextWidth
+
+        anchors.left: logoContainer.right
+
+        SideAnchoredRect {
+            id: playerNameBackground
+
+            width: parent.width
+            height: parent.height
+            color: "white"
+        }
+
+        Item {
+            width: parent.width
+            height: parent.height
+            y: parent.height * 0.05
+
+            Text {
+                id: playerName
+
+                text: ((component.playerName == "")
+                            ?component.teamName :component.playerName)+ "  "
+                color: component.primaryColor
+
+                font.pixelSize: parent.height * 0.45
+                font.family: "High School USA Sans"
+
+                anchors.left: parent.left
+                anchors.leftMargin: component.height * 0.2
+                anchors.verticalCenter: parent.verticalCenter
+
+                onTextChanged: internal.updateMaxWidth()
+                onFontChanged: internal.updateMaxWidth()
+                Component.onCompleted: internal.updateMaxWidth()
+            }
         }
     }
 
     Item {
-        id: playerNameClipper
+        id: teamNameContainer
 
-        clip: true
-        height: parent.height / 1.5
-        width: playerName.width
+        height: (component.playerName == "") ?0 :(parent.height * 0.38)
+        width: internal.maxTextWidth
 
-        anchors.left: playerNumberClipper.right
+        anchors.top: playerNameContainer.bottom
+        anchors.left: playerNameContainer.left
 
-        BoxedText {
-            id: playerName
 
-            text.text: component.playerName + "    "
-            size: parent.height
-//            alignWidth: teamName.width
-            backgroundOpacity: 0.9
-            style: internal.playerNameStyle
+        SideAnchoredRect {
+            id: teamNameBackground
 
-            text.anchors.centerIn: null
-            text.anchors.left: textParent.left
-            text.anchors.leftMargin: style.hPadding
+            width: parent.width
+            height: parent.height
+            color: component.secondaryColor
         }
-    }
 
-    Item {
-        id: teamNameClipper
-
-        height: parent.height - playerNameClipper.height
-        width: playerNameClipper.width
-        clip: true
-
-        anchors.top: playerNameClipper.bottom
-        anchors.left: playerNameClipper.left
-
-        BoxedText {
+        Text {
             id: teamName
 
-            text.text: component.teamName + "    "
-            size: parent.height
-            alignWidth: playerName.width
-            backgroundOpacity: 0.9
-            style: internal.teamNameStyle
+            text: component.teamName + "  "
+            width: parent.width
+            color: "black"
+            visible: (component.playerName != "")
 
-            text.anchors.centerIn: null
-            text.anchors.left: textParent.left
-            text.anchors.leftMargin: style.hPadding
+            font.pixelSize: parent.height * 0.518
+            font.family: "Saira"
+
+            anchors.left: parent.left
+            anchors.leftMargin: component.height * 0.2
+            anchors.verticalCenter: parent.verticalCenter
+
+            onTextChanged: internal.updateMaxWidth()
+            onFontChanged: internal.updateMaxWidth()
+            Component.onCompleted: internal.updateMaxWidth()
         }
     }
 }

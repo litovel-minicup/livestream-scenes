@@ -27,7 +27,7 @@ Item {
         onShowShooterReq: {
             if(matchDataManager.matchData.last_shooter.team_name !== null &&
                     matchDataManager.matchData.last_shooter.team_name !== undefined)
-                shooterView.state = "visible"
+                shooterView.state = "full"
             timer.start()
         }
         onHideShooterReq: shooterView.state = "hidden"
@@ -61,9 +61,9 @@ Item {
             }
 
             else {
-                shooterView.teamName = ""
+                shooterView.teamName = data.last_shooter.team_name
                 shooterView.playerNumber = " "
-                shooterView.playerName = data.last_shooter.team_name
+                shooterView.playerName = ""
             }
 
         }

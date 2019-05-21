@@ -1,12 +1,12 @@
 import QtQuick 2.12
 
 
-Rectangle {
+Item {
     id: component
 
-    color: "transparent"
     property alias fm: fm
-    property alias text: text
+    property string text: ""
+    property alias textComponent: text
     property alias font: text.font
     property alias linkedTextFont: fm.font
     property string linkedText: ""
@@ -20,6 +20,7 @@ Rectangle {
     Text {
         id: text
 
+        text: component.text
         anchors.verticalCenter: parent.verticalCenter
     }
 }

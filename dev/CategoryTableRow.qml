@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.12
 
 
-Rectangle {
+Item {
     id: component
 
     property int spacing: 0
@@ -16,18 +16,13 @@ Rectangle {
     property string teamScore: ""
     property int teamPoints: 0
     property color textColor: "black"
+    property alias color: background.color
 
-    color: "white"
+    property int animationsDuration: 250
+    property int animationsDelay: 0
+    property int textAnimationsDuration: 120 * 1
 
-    // Bottom Line
-    Rectangle {
-        z: 1
-        width: parent.width
-        height: 2
-        color: "#4a52a4"
-
-        anchors.bottom: parent.bottom
-    }
+    state: "hidden"
 
     QtObject {
         id: internal
@@ -39,12 +34,80 @@ Rectangle {
             linkedTextFont.family: "Saira"
             linkedTextFont.pixelSize: component.titleTextPixelSize
 
-            text.color: component.textColor
+            textComponent.color: component.textColor
+        }
+    }
+
+    states: [
+        State {
+            name: "full"
+            PropertyChanges { target: rowContent; opacity: 1 }
+            PropertyChanges {
+                target: background
+                sideAnchor: "left"
+                width: component.width
+            }
+        },
+
+        State {
+            name: "hidden"
+            PropertyChanges { target: rowContent; opacity: 0 }
+            PropertyChanges {
+                target: background
+                sideAnchor: "right"
+                width: 0
+            }
+        }
+    ]
+
+    transitions: [
+        Transition {
+            from: "full"; to: "hidden"
+            SequentialAnimation {
+                NumberAnimation { duration: component.animationsDelay }
+                NumberAnimation { target: rowContent; property: "opacity";
+                    duration: component.textAnimationsDuration }
+                NumberAnimation { target: background; property: "width";
+                    duration: component.animationsDuration; easing.type: Easing.OutCubic }
+            }
+        },
+
+        Transition {
+            from: "hidden"; to: "full"
+            SequentialAnimation {
+                NumberAnimation { duration: component.animationsDelay }
+                NumberAnimation { target: background; property: "width";
+                    duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                NumberAnimation { target: rowContent; property: "opacity";
+                    duration: component.textAnimationsDuration }
+            }
+        }
+    ]
+
+    SideAnchoredRect {
+        id: background
+
+        color: "white"
+        width: parent.width
+        height: parent.height
+
+        // Bottom Line
+        Rectangle {
+            id: splitLine
+
+            z: 1
+            width: parent.width
+            height: 2
+            color: "#4a52a4"
+            // TODO check
+            visible: background.color == "#ffffff"
+
+            anchors.bottom: parent.bottom
         }
     }
 
     RowLayout {
-        id: layout
+        id: rowContent
 
         spacing: component.spacing
 
@@ -54,25 +117,24 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
 
-        anchors.leftMargin: layout.spacing * 1.5
-        anchors.rightMargin: layout.spacing
+        anchors.leftMargin: rowContent.spacing * 1.5
+        anchors.rightMargin: rowContent.spacing
 
         Loader {
             sourceComponent: internal.textComponent
-            height: component.height
-
+            height: parent.height
             onLoaded: {
                 item.linkedText = "#"
-                item.text.text = rowIndex + 1 + "."
-                item.text.anchors.right = item.text.parent.right
-                item.text.anchors.rightMargin = -item.fm.advanceWidth(".")
+                item.text = rowIndex + 1
+                item.textComponent.anchors.horizontalCenter =
+                        item.textComponent.parent.horizontalCenter
             }
         }
 
         Item {
             width: height
             height: component.height * 0.74
-            Layout.leftMargin: layout.spacing
+            Layout.leftMargin: rowContent.spacing
 
             Image {
                 source: "mc-club-logos-2019/2019/" + component.teamSlug + ".png"
@@ -100,8 +162,8 @@ Rectangle {
             height: parent.height
             onLoaded: {
                 item.linkedText = "V"
-                item.text.text = Qt.binding(function() { return component.teamWins })
-                item.text.anchors.horizontalCenter = item.text.parent.horizontalCenter
+                item.text = Qt.binding(function() { return component.teamWins })
+                item.textComponent.anchors.horizontalCenter = item.textComponent.parent.horizontalCenter
             }
         }
 
@@ -110,8 +172,8 @@ Rectangle {
             height: parent.height
             onLoaded: {
                 item.linkedText = "P"
-                item.text.text = Qt.binding(function() { return component.teamLoses })
-                item.text.anchors.horizontalCenter = item.text.parent.horizontalCenter
+                item.text = Qt.binding(function() { return component.teamLoses })
+                item.textComponent.anchors.horizontalCenter = item.textComponent.parent.horizontalCenter
             }
         }
 
@@ -120,30 +182,30 @@ Rectangle {
             height: parent.height
             onLoaded: {
                 item.linkedText = "R"
-                item.text.text = Qt.binding(function() { return component.teamTies })
-                item.text.anchors.horizontalCenter = item.text.parent.horizontalCenter
+                item.text = Qt.binding(function() { return component.teamTies })
+                item.textComponent.anchors.horizontalCenter = item.textComponent.parent.horizontalCenter
             }
         }
 
         Loader {
             sourceComponent: internal.textComponent
             height: parent.height
-            Layout.leftMargin: layout.spacing
+            Layout.leftMargin: rowContent.spacing
             onLoaded: {
                 item.linkedText = "skóre"
-                item.text.text = Qt.binding(function() { return component.teamScore })
-                item.text.anchors.horizontalCenter = item.text.parent.horizontalCenter
+                item.text = Qt.binding(function() { return component.teamScore })
+                item.textComponent.anchors.horizontalCenter = item.textComponent.parent.horizontalCenter
             }
         }
 
         Loader {
             sourceComponent: internal.textComponent
             height: parent.height
-            Layout.leftMargin: layout.spacing
+            Layout.leftMargin: rowContent.spacing
             onLoaded: {
                 item.linkedText = "body"
-                item.text.text = Qt.binding(function() { return component.teamPoints })
-                item.text.anchors.horizontalCenter = item.text.parent.horizontalCenter
+                item.text = Qt.binding(function() { return component.teamPoints })
+                item.textComponent.anchors.horizontalCenter = item.textComponent.parent.horizontalCenter
             }
         }
     }

@@ -2,13 +2,17 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.12
 
 
-Rectangle {
+Item {
     id: component
 
     property int textPixelSize: component.height * 0.384
     property font font: Qt.font({"family": "Saira", })
     property var labels: ["", "", "", "", "", "", ""]
     property int spacing: 0
+    property alias color: background.color
+    property int animationsDuration: 250
+    property int animationsDelay: 0
+    property int textAnimationsDuration: 120 * 1
 
     QtObject {
         id: internal
@@ -20,8 +24,58 @@ Rectangle {
         }
     }
 
+    state: "hidden"
+    states: [
+        State {
+            name: "full"
+            PropertyChanges {
+                target: background
+                sideAnchor: "bottom"
+                height: component.height
+            }
+            PropertyChanges { target: rowContent; opacity: 1 }
+        },
+
+        State {
+            name: "hidden"
+            PropertyChanges { target: background; sideAnchor: "top"; height: 0 }
+            PropertyChanges { target: rowContent; opacity: 0 }
+        }
+    ]
+
+    transitions: [
+        Transition {
+            from: "full"; to: "hidden"
+            SequentialAnimation {
+                NumberAnimation { duration: component.animationsDelay }
+                NumberAnimation { target: rowContent; property: "opacity";
+                    duration: component.textAnimationsDuration }
+                NumberAnimation { target: background; property: "height";
+                    duration: component.animationsDuration; easing.type: Easing.OutCubic }
+            }
+        },
+
+        Transition {
+            from: "hidden"; to: "full"
+            SequentialAnimation {
+                NumberAnimation { duration: component.animationsDelay }
+                NumberAnimation { target: background; property: "height";
+                    duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                NumberAnimation { target: rowContent; property: "opacity";
+                    duration: component.textAnimationsDuration }
+            }
+        }
+
+    ]
+
+    SideAnchoredRect {
+        id: background
+        width: parent.width
+        height: parent.height
+    }
+
     RowLayout {
-        id: layout
+        id: rowContent
 
         spacing: component.spacing
         Layout.alignment: Qt.AlignVCenter
@@ -31,12 +85,12 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
 
-        anchors.leftMargin: layout.spacing
-        anchors.rightMargin: layout.spacing
+        anchors.leftMargin: rowContent.spacing
+        anchors.rightMargin: rowContent.spacing
 
         Loader {
             sourceComponent: internal.textComponent
-            Layout.leftMargin: layout.spacing * 0.5
+            Layout.leftMargin: rowContent.spacing * 0.5
             onLoaded: item.text = component.labels[0]
         }
 
@@ -68,13 +122,13 @@ Rectangle {
 
         Loader {
             sourceComponent: internal.textComponent
-            Layout.leftMargin: layout.spacing
+            Layout.leftMargin: rowContent.spacing
             onLoaded: item.text = component.labels[5]
         }
 
         Loader {
             sourceComponent: internal.textComponent
-            Layout.leftMargin: layout.spacing
+            Layout.leftMargin: rowContent.spacing
             onLoaded: item.text = component.labels[6]
         }
     }

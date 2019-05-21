@@ -32,10 +32,7 @@ Item {
         target: matchDataManager
         onMatchDataChanged: component.updateData(matchDataManager.matchData)
         onShowTeamTilesReq: teamTiles.state = "full"
-        onHideTeamTilesReq: {
-            console.log("hide")
-            teamTiles.state = "hidden"
-        }
+        onHideTeamTilesReq: teamTiles.state = "hidden"
     }
 
     TeamTiles {

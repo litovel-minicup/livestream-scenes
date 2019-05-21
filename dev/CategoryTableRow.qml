@@ -16,6 +16,7 @@ Item {
     property string teamScore: ""
     property int teamPoints: 0
     property color textColor: "black"
+    property color teamTextColor: "black"
     property alias color: background.color
 
     property int animationsDuration: 250
@@ -147,7 +148,7 @@ Item {
 
         Text {
             text: component.teamName
-            color: component.textColor
+            color: component.teamTextColor
             font.family: "High School USA Sans"
             font.pixelSize: parent.height * 0.462
         }

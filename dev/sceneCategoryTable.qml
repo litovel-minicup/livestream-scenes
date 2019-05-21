@@ -38,29 +38,29 @@ Item {
         readonly property int spacing: table.height * 0.125 * 0.384
         property var datas: [
             { "name": "foo", "slug": "dukla-praha", "wins": 0, "loses": 0, "ties": 0, "score": "",
-                "points": 0, "background_color": "white", "text_color": "black" },
+                "points": 0, "background_color": "white", "text_color": "black", "team_text_color": "black" },
             { "name": "", "slug": "dukla-praha", "wins": 0, "loses": 0, "ties": 0, "score": "",
-                "points": 0, "background_color": "white", "text_color": "black" },
+                "points": 0, "background_color": "white", "text_color": "black", "team_text_color": "black" },
             { "name": "", "slug": "dukla-praha", "wins": 0, "loses": 0, "ties": 0, "score": "",
-                "points": 0, "background_color": "white", "text_color": "black" },
+                "points": 0, "background_color": "white", "text_color": "black", "team_text_color": "black" },
             { "name": "", "slug": "dukla-praha", "wins": 0, "loses": 0, "ties": 0, "score": "",
-                "points": 0, "background_color": "white", "text_color": "black" },
+                "points": 0, "background_color": "white", "text_color": "black", "team_text_color": "black" },
             { "name": "", "slug": "dukla-praha", "wins": 0, "loses": 0, "ties": 0, "score": "",
-                "points": 0, "background_color": "white", "text_color": "black" },
+                "points": 0, "background_color": "white", "text_color": "black", "team_text_color": "black" },
             { "name": "", "slug": "dukla-praha", "wins": 0, "loses": 0, "ties": 0, "score": "",
-                "points": 0, "background_color": "white", "text_color": "black" },
+                "points": 0, "background_color": "white", "text_color": "black", "team_text_color": "black" },
             { "name": "", "slug": "dukla-praha", "wins": 0, "loses": 0, "ties": 0, "score": "",
-                "points": 0, "background_color": "white", "text_color": "black" },
+                "points": 0, "background_color": "white", "text_color": "black", "team_text_color": "black" },
             { "name": "", "slug": "dukla-praha", "wins": 0, "loses": 0, "ties": 0, "score": "",
-                "points": 0, "background_color": "white", "text_color": "black" },
+                "points": 0, "background_color": "white", "text_color": "black", "team_text_color": "black" },
             { "name": "", "slug": "dukla-praha", "wins": 0, "loses": 0, "ties": 0, "score": "",
-                "points": 0, "background_color": "white", "text_color": "black" },
+                "points": 0, "background_color": "white", "text_color": "black", "team_text_color": "black" },
             { "name": "", "slug": "dukla-praha", "wins": 0, "loses": 0, "ties": 0, "score": "",
-                "points": 0, "background_color": "white", "text_color": "black" },
+                "points": 0, "background_color": "white", "text_color": "black", "team_text_color": "black" },
             { "name": "", "slug": "dukla-praha", "wins": 0, "loses": 0, "ties": 0, "score": "",
-                "points": 0, "background_color": "white", "text_color": "black" },
+                "points": 0, "background_color": "white", "text_color": "black", "team_text_color": "black" },
             { "name": "", "slug": "dukla-praha", "wins": 0, "loses": 0, "ties": 0, "score": "",
-                "points": 0, "background_color": "white", "text_color": "black" },
+                "points": 0, "background_color": "white", "text_color": "black", "team_text_color": "black" },
         ]
 
         titleHeight:  table.height * 0.125
@@ -91,6 +91,7 @@ Item {
             teamPoints: table.datas[rowIndex].points
             textColor: table.datas[rowIndex].text_color
             color: table.datas[rowIndex].background_color
+            teamTextColor: table.datas[rowIndex].team_text_color
         }
 
         Component.onCompleted: {
@@ -117,13 +118,17 @@ Item {
             table.datas[i].points = teamData.points
             table.datas[i].score = ('0' + teamData.scored).slice(-2) + ":"
                     + ('0' + teamData.received).slice(-2)
-            if(teamData.id == teamHomeId || teamData.id == teamAwayId) {
-                table.datas[i].text_color = teamData.secondary_color
-                table.datas[i].background_color = teamData.primary_color
+
+            console.log(teamData.id, teamHomeId, teamAwayId)
+            if(teamData.id === teamHomeId || teamData.id === teamAwayId) {
+                table.datas[i].text_color = teamData.color_secondary
+                table.datas[i].team_text_color = teamData.color_secondary
+                table.datas[i].background_color = teamData.color_primary
             }
 
             else {
-                table.datas[i].text_color = teamData.primary_color
+                table.datas[i].team_text_color = teamData.color_primary
+                table.datas[i].text_color = "black"
                 table.datas[i].background_color = "white"
 
             }

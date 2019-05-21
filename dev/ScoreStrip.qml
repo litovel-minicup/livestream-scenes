@@ -16,9 +16,9 @@ Item {
     property color teamHomeBackgroundColor: "#631427"
     property color teamAwayBackgroundColor: "#00339c"
 
-    property int animationsDuration: 350 * 1.2
+    property int animationsDuration: 250 * 1
     property int textAnimationsDuration: 120 * 1
-    property int sideAnimationDelay: 200 * 1.2
+    property int sideAnimationDelay: 150* 1
 
     property string matchState: "POLOČAS"
 
@@ -113,14 +113,14 @@ Item {
                     NumberAnimation { target: timeBox.text; property: "opacity";
                         duration: component.textAnimationsDuration }
                     NumberAnimation { target: timeBox.mask; property: "height";
-                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                        duration: component.animationsDuration; easing.type: Easing.OutQuad }
                 }
                 SequentialAnimation {
                     NumberAnimation { duration: component.sideAnimationDelay}
                     NumberAnimation { target: teamHomeContainer; property: "opacity";
                         duration: component.textAnimationsDuration }
                     NumberAnimation { target: teamHomeClipper.mask; property: "width";
-                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                        duration: component.animationsDuration; easing.type: Easing.OutQuad }
                 }
 
                 SequentialAnimation {
@@ -128,7 +128,7 @@ Item {
                     NumberAnimation { target: teamAwayContainer; property: "opacity";
                         duration: component.textAnimationsDuration }
                     NumberAnimation { target: teamAwayClipper.mask; property: "width";
-                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                        duration: component.animationsDuration; easing.type: Easing.OutQuad }
                 }
 
 
@@ -139,7 +139,7 @@ Item {
                     NumberAnimation { target: scoreBox.text; property: "opacity";
                         duration: component.textAnimationsDuration }
                     NumberAnimation { target: scoreBox.mask; property: "height";
-                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                        duration: component.animationsDuration; easing.type: Easing.OutQuad }
                 }
             }
         },
@@ -149,7 +149,7 @@ Item {
             ParallelAnimation {
                 SequentialAnimation {
                     NumberAnimation { target: scoreBox.mask; property: "height";
-                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                        duration: component.animationsDuration; easing.type: Easing.OutQuad }
                     NumberAnimation { target: scoreBox.text; property: "opacity";
                         duration: component.textAnimationsDuration }
                 }
@@ -157,7 +157,7 @@ Item {
                 SequentialAnimation {
                     NumberAnimation { duration: component.animationsDuration }
                     NumberAnimation { target: teamHomeClipper.mask; property: "width";
-                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                        duration: component.animationsDuration; easing.type: Easing.OutQuad }
                     NumberAnimation { target: teamHomeContainer; property: "opacity";
                         duration: component.textAnimationsDuration }
                 }
@@ -166,7 +166,7 @@ Item {
                     NumberAnimation { duration: component.sideAnimationDelay
                                                 + component.animationsDuration }
                     NumberAnimation { target: teamAwayClipper.mask; property: "width";
-                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                        duration: component.animationsDuration; easing.type: Easing.OutQuad }
                     NumberAnimation { target: teamAwayContainer; property: "opacity";
                         duration: component.textAnimationsDuration }
                 }
@@ -175,7 +175,7 @@ Item {
                     NumberAnimation { duration: component.animationsDuration
                                                 + 2 * component.sideAnimationDelay }
                     NumberAnimation { target: timeBox.mask; property: "height";
-                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                        duration: component.animationsDuration; easing.type: Easing.OutQuad }
                     NumberAnimation { target: timeBox.text; property: "opacity";
                         duration: component.textAnimationsDuration }
                 }

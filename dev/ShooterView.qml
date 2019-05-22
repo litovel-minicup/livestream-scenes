@@ -8,10 +8,11 @@ Item {
     property string slug: "dukla-praha"
     property color primaryColor: "#670f1b"
     property color secondaryColor: "#fcc824"
+    property color textColor: "black"
 
-    property int animationsDuration: 250 * 1
-    property int textAnimationsDuration: 120 * 1
-    property int sideAnimationDelay: 150* 1
+    property int animationsDuration: 250 * 1.5
+    property int textAnimationsDuration: 120 * 1.5
+    property int sideAnimationDelay: 150* 1.5
 
     state: "hidden"
 
@@ -19,16 +20,24 @@ Item {
         id: internal
 
         property int maxTextWidth: 0
+    }
 
-        function updateMaxWidth() {
-            if(!playerName || !teamName)
-                return
+    function updateMaxWidth() {
+        if(!playerName || !teamName)
+            return 0
 
-            internal.maxTextWidth = Math.max(
-                fmPlayerName.advanceWidth(playerName.text) + playerName.anchors.leftMargin,
-                fmTeamName.advanceWidth(teamName.text) + teamName.anchors.leftMargin
-            )
+        var maxWidth;
+        if(component.playerName == "") {
+            maxWidth = playerName.width + playerName.anchors.leftMargin
+            internal.maxTextWidth = maxWidth
+            return maxWidth
         }
+
+        maxWidth = Math.max(teamName.width + teamName.anchors.leftMargin,
+                                playerName.width + playerName.anchors.leftMargin)
+
+        internal.maxTextWidth = maxWidth
+        return maxWidth
     }
 
     states: [
@@ -61,12 +70,12 @@ Item {
             PropertyChanges {
                 target: teamNameBackground
                 sideAnchor: "left"
-                width: teamNameContainer.width
+                width: teamNameContainer.width //component.updateMaxWidth()
             }
             PropertyChanges {
                 target: playerNameBackground
                 sideAnchor: "left"
-                width: playerNameContainer.width
+                width: playerNameContainer.width// component.updateMaxWidth()
             }
             PropertyChanges {
                 target: logoBackground
@@ -79,16 +88,15 @@ Item {
     transitions: [
         Transition {
             from: "full"; to: "hidden"
-            SequentialAnimation {
-                NumberAnimation { target: logo; property: "opacity";
-                    duration: component.textAnimationsDuration }
-                NumberAnimation { target: logoBackground; property: "width";
-                    duration: component.animationsDuration; easing.type: Easing.OutCubic }
-            }
-
             ParallelAnimation {
                 SequentialAnimation {
-                    NumberAnimation { duration: component.sideAnimationDelay}
+                    NumberAnimation { target: logo; property: "opacity";
+                        duration: component.textAnimationsDuration }
+                    NumberAnimation { target: logoBackground; property: "width";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                }
+                SequentialAnimation {
+                    NumberAnimation { duration: component.sideAnimationDelay * 1}
                     NumberAnimation { target: playerName; property: "opacity";
                         duration: component.textAnimationsDuration }
                     NumberAnimation { target: playerNameBackground; property: "width";
@@ -109,13 +117,13 @@ Item {
             ParallelAnimation {
                 SequentialAnimation {
                     NumberAnimation { target: logoBackground; property: "width";
-                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                        duration: component.animationsDuration; easing.type: Easing.OutQuad }
                     NumberAnimation { target: logo; property: "opacity";
                         duration: component.textAnimationsDuration }
                 }
 
                 SequentialAnimation {
-                    NumberAnimation { duration: component.sideAnimationDelay }
+                    NumberAnimation { duration: component.sideAnimationDelay * 1 }
                     NumberAnimation { target: playerNameBackground; property: "width";
                         duration: component.animationsDuration; easing.type: Easing.OutCubic }
                     NumberAnimation { target: playerName; property: "opacity";
@@ -140,8 +148,6 @@ Item {
         height: parent.height
         width: height * 1.14
 
-//        color: "red"
-
         SideAnchoredRect {
             id: logoBackground
 
@@ -154,23 +160,13 @@ Item {
             id: logo
 
             source: "mc-club-logos-2019/2019/" + component.slug + ".png"
-            width: height
-            height: 0.725 * parent.height
+            width: 0.725 * parent.width
+            height: width
             mipmap: true
             fillMode: Image.PreserveAspectFit
 
             anchors.centerIn: parent
         }
-    }
-
-    FontMetrics {
-        id: fmPlayerName
-        font: playerName.font
-    }
-
-    FontMetrics {
-        id: fmTeamName
-        font: teamName.font
     }
 
     Item {
@@ -198,8 +194,8 @@ Item {
                 id: playerName
 
                 text: ((component.playerName == "")
-                            ?component.teamName :component.playerName)+ "  "
-                color: component.primaryColor
+                            ?component.teamName :component.playerName)+ "   "
+                color: component.textColor
 
                 font.pixelSize: parent.height * 0.45
                 font.family: "High School USA Sans"
@@ -207,10 +203,6 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: component.height * 0.2
                 anchors.verticalCenter: parent.verticalCenter
-
-                onTextChanged: internal.updateMaxWidth()
-                onFontChanged: internal.updateMaxWidth()
-                Component.onCompleted: internal.updateMaxWidth()
             }
         }
     }
@@ -236,9 +228,8 @@ Item {
         Text {
             id: teamName
 
-            text: component.teamName + "  "
-            width: parent.width
-            color: "black"
+            text: component.teamName + "   "
+            color: (teamNameBackground.color.hslLightness < 0.5) ?"white" :"blask"
             visible: (component.playerName != "")
 
             font.pixelSize: parent.height * 0.518
@@ -247,10 +238,6 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: component.height * 0.2
             anchors.verticalCenter: parent.verticalCenter
-
-            onTextChanged: internal.updateMaxWidth()
-            onFontChanged: internal.updateMaxWidth()
-            Component.onCompleted: internal.updateMaxWidth()
         }
     }
 }

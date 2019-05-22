@@ -26,9 +26,10 @@ Item {
         onMatchDataChanged: component.updateData(matchDataManager.matchData)
         onShowShooterReq: {
             if(matchDataManager.matchData.last_shooter.team_name !== null &&
-                    matchDataManager.matchData.last_shooter.team_name !== undefined)
+                    matchDataManager.matchData.last_shooter.team_name !== undefined) {
                 shooterView.state = "full"
-            timer.start()
+                timer.start()
+            }
         }
         onHideShooterReq: shooterView.state = "hidden"
     }
@@ -42,7 +43,7 @@ Item {
         id: timer
 
         running: false
-        interval: 5000
+        interval: 3000
         triggeredOnStart: false
         onTriggered: {
             timer.stop()
@@ -53,18 +54,21 @@ Item {
     function updateData(data) {
         if(data.last_shooter.team_name !== null &&
                 data.last_shooter.team_name !== undefined) {
-            if(data.last_shooter.player_number !== null &&
-                    data.last_shooter.player_number !== undefined) {
-                shooterView.playerNumber = data.last_shooter.player_number
+            if(data.last_shooter.player_name !== null &&
+                    data.last_shooter.player_name !== undefined) {
                 shooterView.playerName = data.last_shooter.player_name
-                shooterView.teamName = data.last_shooter.team_name
             }
 
-            else {
-                shooterView.teamName = data.last_shooter.team_name
-                shooterView.playerNumber = " "
+            else
                 shooterView.playerName = ""
-            }
+
+            shooterView.primaryColor = data.last_shooter.team_color_primary
+            shooterView.secondaryColor = data.last_shooter.team_color_secondary
+            shooterView.textColor = data.last_shooter.team_color_text
+            shooterView.teamName = data.last_shooter.team_name
+            shooterView.slug = data.last_shooter.team_slug
+
+            shooterView.updateMaxWidth()
 
         }
     }

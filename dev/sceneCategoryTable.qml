@@ -27,7 +27,7 @@ Item {
         target: matchDataManager
         onMatchDataChanged: component.updateData(matchDataManager.matchData)
         onShowCategoryTableReq: table.state = "full"
-        onNextPageCategoryTableReq: table.state = table.nextPage()
+        onNextPageCategoryTableReq: table.nextPage()
         onHideCategoryTableReq: table.state = "hidden"
     }
 

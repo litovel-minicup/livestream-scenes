@@ -90,21 +90,7 @@ Item {
 
         color: "white"
         width: parent.width
-        height: parent.height
-
-        // Bottom Line
-        Rectangle {
-            id: splitLine
-
-            z: 1
-            width: parent.width
-            height: 2
-            color: "#4a52a4"
-            // TODO check
-            visible: background.color == "#ffffff"
-
-            anchors.bottom: parent.bottom
-        }
+        height: parent.height - 2
     }
 
     RowLayout {

@@ -96,10 +96,10 @@ Item {
     function updateData(data) {
         // setting team names
         scoreBoard.teamHome = data.home_team_abbr
-        scoreBoard.teamHomeColor = data.home_team_color_primary
+        scoreBoard.teamHomeColor = data.home_team_color_text
 
         scoreBoard.teamAway = data.away_team_abbr
-        scoreBoard.teamAwayColor = data.away_team_color_primary
+        scoreBoard.teamAwayColor = data.away_team_color_text
 
         // setting score
         if(data.score[0] !== null && data.score[1] !== null) {

@@ -119,7 +119,6 @@ Item {
             table.datas[i].score = ('0' + teamData.scored).slice(-2) + ":"
                     + ('0' + teamData.received).slice(-2)
 
-            console.log(teamData.id, teamHomeId, teamAwayId)
             if(teamData.id === teamHomeId || teamData.id === teamAwayId) {
                 table.datas[i].text_color = teamData.color_secondary
                 table.datas[i].team_text_color = teamData.color_secondary
@@ -127,7 +126,7 @@ Item {
             }
 
             else {
-                table.datas[i].team_text_color = teamData.color_primary
+                table.datas[i].team_text_color = teamData.color_text
                 table.datas[i].text_color = "black"
                 table.datas[i].background_color = "white"
 

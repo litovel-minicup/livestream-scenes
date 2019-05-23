@@ -44,7 +44,7 @@ Item {
         }
 
         readonly property StyledTextStyle timeStyle: StyledTextStyle {
-            textColor: "white"
+            textColor: "black"
             color: "#1df276"
             font.family: "Saira"
         }

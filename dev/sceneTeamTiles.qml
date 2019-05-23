@@ -39,7 +39,7 @@ Item {
         id: teamTiles
 
         state: "hidden"
-        sideAnimationDelay: 0
+//        sideAnimationDelay: 0
         anchors.fill: parent
     }
 

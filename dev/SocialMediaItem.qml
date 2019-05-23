@@ -83,7 +83,7 @@ Item {
                 SequentialAnimation {
                     NumberAnimation { duration: component.animationsDelay }
                     NumberAnimation { target: logoBackground; property: "height";
-                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                        duration: component.animationsDuration; easing.type: Easing.OutQuad }
                     NumberAnimation { target: logo; property: "opacity";
                         duration: component.textAnimationsDuration }
                 }

@@ -11,9 +11,9 @@ Item {
     property alias teamAway: teamAwayText.text
     property alias teamHomeTextColor: teamHomeText.color
     property alias teamAwayTextColor: teamAwayText.color
-    property int animationsDuration: 350 * 2
-    property int textAnimationsDuration: 120 * 1
-    property int sideAnimationDelay: 200 * 1
+    property int animationsDuration: 600
+    property int textAnimationsDuration: 200 * 1
+    property int sideAnimationDelay: 300 * 1
 
     state: "hidden"
     states: [
@@ -21,13 +21,13 @@ Item {
             name: "hidden"
             PropertyChanges {
                 target: teamHomeTileClipper.mask
-                sideAnchor: "bottom"
-                height: 0
+                sideAnchor: "right"
+                width: 0
             }
             PropertyChanges {
                 target: teamAwayTileClipper.mask
-                sideAnchor: "top"
-                height: 0
+                sideAnchor: "left"
+                width: 0
             }
             PropertyChanges {
                 target: teamAwayContainer
@@ -43,13 +43,13 @@ Item {
             name: "full"
             PropertyChanges {
                 target: teamHomeTileClipper.mask
-                sideAnchor: "top"
-                height: teamHomeTile.height
+                sideAnchor: "left"
+                width: teamHomeTile.width
             }
             PropertyChanges {
                 target: teamAwayTileClipper.mask
-                sideAnchor: "bottom"
-                height: teamAwayTile.height
+                sideAnchor: "right"
+                width: teamAwayTile.width
             }
             PropertyChanges {
                 target: teamAwayContainer
@@ -66,23 +66,20 @@ Item {
         Transition {
             from: "hidden"; to: "full"
             ParallelAnimation {
-                NumberAnimation { target: teamHomeTileClipper.mask; property: "height";
-                    duration: component.animationsDuration; easing.type: Easing.OutCubic }
                 SequentialAnimation {
-                    NumberAnimation { duration: component.sideAnimationDelay }
-                    NumberAnimation { target: teamAwayTileClipper.mask; property: "height";
+                    NumberAnimation { target: teamHomeTileClipper.mask; property: "width";
                         duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                    NumberAnimation { target: teamHomeContainer; property: "opacity";
+                        duration: component.textAnimationsDuration }
                 }
 
-               SequentialAnimation {
-                    NumberAnimation { duration: component.sideAnimationDelay
-                                                + component.animationsDuration }
-                    ParallelAnimation {
-                        NumberAnimation { target: teamAwayContainer; property: "opacity";
-                            duration: component.textAnimationsDuration }
-                        NumberAnimation { target: teamHomeContainer; property: "opacity";
-                            duration: component.textAnimationsDuration }
-                    }
+
+                SequentialAnimation {
+                    NumberAnimation { duration: component.sideAnimationDelay }
+                    NumberAnimation { target: teamAwayTileClipper.mask; property: "width";
+                        duration: component.animationsDuration; easing.type: Easing.OutCubic }
+                    NumberAnimation { target: teamAwayContainer; property: "opacity";
+                        duration: component.textAnimationsDuration }
                 }
             }
         },
@@ -90,22 +87,19 @@ Item {
         Transition {
             from: "full"; to: "hidden"
             ParallelAnimation {
-                ParallelAnimation {
-                    NumberAnimation { target: teamAwayContainer; property: "opacity";
-                        duration: component.textAnimationsDuration }
+                SequentialAnimation {
                     NumberAnimation { target: teamHomeContainer; property: "opacity";
                         duration: component.textAnimationsDuration }
-                }
-
-                SequentialAnimation{
-                    NumberAnimation { duration: component.textAnimationsDuration }
-                    NumberAnimation { target: teamHomeTileClipper.mask; property: "height";
+                    NumberAnimation { target: teamHomeTileClipper.mask; property: "width";
                         duration: component.animationsDuration; easing.type: Easing.OutCubic }
                 }
+
+
                 SequentialAnimation {
-                    NumberAnimation { duration: component.textAnimationsDuration
-                                                + component.sideAnimationDelay }
-                    NumberAnimation { target: teamAwayTileClipper.mask; property: "height";
+                    NumberAnimation { duration: component.sideAnimationDelay }
+                    NumberAnimation { target: teamAwayContainer; property: "opacity";
+                        duration: component.textAnimationsDuration }
+                    NumberAnimation { target: teamAwayTileClipper.mask; property: "width";
                         duration: component.animationsDuration; easing.type: Easing.OutCubic }
                 }
             }

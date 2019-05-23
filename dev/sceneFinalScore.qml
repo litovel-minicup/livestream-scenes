@@ -37,6 +37,7 @@ Item {
             var matchState = matchDataManager.matchData.state
             if(matchState !== "end" && matchState !=="pause" && matchState !=="init")
                 return
+            matchDataManager.hideScoreBoardReq()
             finalScore.state = "full"
         }
         onHideFinalScoreReq: finalScore.state = "hidden"

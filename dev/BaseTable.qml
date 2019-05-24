@@ -4,6 +4,7 @@ Item {
     id: component
 
     signal nextPage
+    signal hided
 
     property Component rowComponent
     property Component titleComponent: Item {}
@@ -13,7 +14,7 @@ Item {
     property real titleHeight: height * 0.125
     property int animationDuration: 250 * 3
 
-    readonly property real rowHeight: (component.height - component.titleHeight)
+    property real rowHeight: (component.height - component.titleHeight)
                                      / component.visibleRowCount
     readonly property alias currentPage: internal.currentPage
 
@@ -50,7 +51,11 @@ Item {
         Transition {
             from: "full"
             to: "hidden"
-            ScriptAction { script: internal.currentPage = 0 }
+            SequentialAnimation {
+                ScriptAction { script: internal.currentPage = 0 }
+                NumberAnimation { duration: component.visibleRowCount * 60 + 250 + 120 }
+                ScriptAction { script: component.hided() }
+            }
         },
 
         Transition {

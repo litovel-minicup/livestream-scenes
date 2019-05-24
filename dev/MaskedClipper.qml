@@ -7,6 +7,7 @@ Item {
 
     Item {
         id: maskWrapper
+        visible: false
         anchors.fill: parent
 
         SideAnchoredRect {

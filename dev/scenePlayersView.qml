@@ -14,11 +14,18 @@ Item {
     }
 
     FontLoader {
-        source: "montserrat-light.ttf"
+        // High School USA Sans
+        source: "font/mc_font.otf"
     }
 
     FontLoader {
-        source: "montserrat-regular.ttf"
+        // Saira Black
+        source: "font/Saira-Black.ttf"
+    }
+
+    FontLoader {
+        // Saira
+        source: "font/Saira-Regular.ttf"
     }
 
     Connections {
@@ -26,8 +33,8 @@ Item {
         onMatchDataChanged: component.updateData(matchDataManager.matchData)
         onShowPlayersReq: {
             if(homePlayersView.state == "hidden" && awayPlayersView.state == "hidden")
-                homePlayersView.state = "visible"
-            else if(homePlayersView.state == "visible" && awayPlayersView.state == "hidden")
+                homePlayersView.state = "full"
+            else if(homePlayersView.state == "full" && awayPlayersView.state == "hidden")
                 homePlayersView.state = "hidden"
         }
 
@@ -37,27 +44,39 @@ Item {
         }
     }
 
-    PlayersView {
+    PlayersList {
         id: homePlayersView
 
+        height: parent.height
+        maxRowCount: 7
         state: "hidden"
-        anchors.fill: parent
+        anchors.horizontalCenter: parent.horizontalCenter
 
-        onHided: awayPlayersView.state = "visible"
+        onHided: awayPlayersView.state = "full"
     }
 
-    PlayersView {
+    PlayersList {
         id: awayPlayersView
 
+        height: parent.height
+        maxRowCount: 7
         state: "hidden"
-        anchors.fill: parent
+        anchors.horizontalCenter: parent.horizontalCenter
     }
 
     function updateData(data) {
         homePlayersView.teamName = data.home_team_name
-        homePlayersView.players = data.players.home.players
+        homePlayersView.teamPrimaryColor = data.home_team_color_primary
+        homePlayersView.teamSecondaryColor = data.home_team_color_secondary
+        homePlayersView.teamTextColor = data.home_team_color_text
+        homePlayersView.teamSlug = data.home_team_slug
+        homePlayersView.datas = data.players.home.players
 
         awayPlayersView.teamName = data.away_team_name
-        awayPlayersView.players = data.players.away.players
+        awayPlayersView.teamPrimaryColor = data.away_team_color_primary
+        awayPlayersView.teamSecondaryColor = data.away_team_color_secondary
+        awayPlayersView.teamTextColor = data.away_team_color_text
+        awayPlayersView.teamSlug = data.away_team_slug
+        awayPlayersView.datas = data.players.away.players
     }
 }

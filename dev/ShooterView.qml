@@ -229,7 +229,7 @@ Item {
             id: teamName
 
             text: component.teamName + "   "
-            color: (teamNameBackground.color.hslLightness < 0.5) ?"white" :"blask"
+            color: (teamNameBackground.color.hslLightness < 0.4) ?"white" :"blask"
             visible: (component.playerName != "")
 
             font.pixelSize: parent.height * 0.518

@@ -9,6 +9,7 @@ Item {
     property color primaryColor: "#670f1b"
     property color secondaryColor: "#fcc824"
     property color textColor: "black"
+    property alias teamNameTextColor: teamName.color
 
     property int animationsDuration: 250 * 1.5
     property int textAnimationsDuration: 120 * 1.5
@@ -230,7 +231,7 @@ Item {
             id: teamName
 
             text: component.teamName + "   "
-            color: (teamNameBackground.color.hslLightness < 0.4) ?"white" :"blask"
+            color: (teamNameBackground.color.hslLightness < 0.5) ?"white" :"blask"
             visible: (component.playerName != "")
 
             font.pixelSize: parent.height * 0.518

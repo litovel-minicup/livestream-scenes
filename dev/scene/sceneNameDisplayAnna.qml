@@ -42,6 +42,7 @@ Item {
         textColor: "#04339b"
         teamName: "Komentátor"
         slug: "litovel-minicup"
+        teamNameTextColor: "black"
 
         anchors.fill: parent
 

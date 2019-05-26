@@ -83,7 +83,5 @@ Item {
 
         if(data.state in matchStates)
             finalScore.matchState = matchStates[data.state];
-        else
-            finalScore.matchState = "";
     }
 }

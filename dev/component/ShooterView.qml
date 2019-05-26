@@ -159,7 +159,8 @@ Item {
         Image {
             id: logo
 
-            source: "mc-club-logos-2019/2019/" + component.slug + ".png"
+            source: (component.slug)
+                    ?"../mc-club-logos-2019/2019/" + component.slug + ".png" :""
             width: 0.725 * parent.width
             height: width
             mipmap: true

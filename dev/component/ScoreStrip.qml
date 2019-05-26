@@ -209,7 +209,9 @@ Item {
                 Image {
                     id: teamHomeLogo
 
-                    source: "mc-club-logos-2019/2019/" + component.teamHomeSlug + ".png"
+                    source: (component.teamHomeSlug)
+                            ?"../mc-club-logos-2019/2019/" + component.teamHomeSlug + ".png"
+                            :""
                     width: height
                     height: 0.573 * parent.height
                     mipmap: true
@@ -255,7 +257,9 @@ Item {
                 Image {
                     id: teamAwayLogo
 
-                    source: "mc-club-logos-2019/2019/" + component.teamAwaySlug + ".png"
+                    source: (component.teamAwaySlug)
+                            ?"../mc-club-logos-2019/2019/" + component.teamAwaySlug + ".png"
+                            :""
                     width: height
                     height: 0.573 * parent.height
                     mipmap: true

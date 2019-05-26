@@ -77,7 +77,8 @@ Item {
             Image {
                 width: height
                 height: parent.height * 0.75
-                source: (component.slug) ?"mc-club-logos-2019/2019/" + component.slug + ".png" :""
+                source: (component.slug)
+                        ?"../mc-club-logos-2019/2019/" + component.slug + ".png" :""
                 mipmap: true
                 fillMode: Image.PreserveAspectFit
 

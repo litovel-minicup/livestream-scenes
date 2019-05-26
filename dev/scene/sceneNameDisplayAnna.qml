@@ -12,19 +12,19 @@ Item {
 
     FontLoader {
         // High School USA Sans
-        source: "font/mc_font.otf"
+        source: "../font/mc_font.otf"
     }
 
 
     FontLoader {
         // Saira Black
-        source: "font/Saira-Black.ttf"
+        source: "../font/Saira-Black.ttf"
     }
 
 
     FontLoader {
         // Saira
-        source: "font/Saira-Regular.ttf"
+        source: "../font/Saira-Regular.ttf"
     }
 
     Connections {

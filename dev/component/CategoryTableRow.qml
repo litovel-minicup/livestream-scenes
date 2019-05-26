@@ -124,8 +124,8 @@ Item {
             Layout.leftMargin: rowContent.spacing
 
             Image {
-                source: "mc-club-logos-2019/2019/" + component.teamSlug + ".png"
-
+                source: (component.teamSlug)
+                        ?"../mc-club-logos-2019/2019/" + component.teamSlug + ".png" :""
                 fillMode: Image.PreserveAspectFit
                 mipmap: true
                 anchors.fill: parent

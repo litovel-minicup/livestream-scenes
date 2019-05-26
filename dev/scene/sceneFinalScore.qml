@@ -1,5 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Window 2.2
+import "../component"
+
 
 Item {
     id: component
@@ -35,8 +37,9 @@ Item {
         onMatchDataChanged: component.updateData(matchDataManager.matchData)
         onShowFinalScoreReq: {
             var matchState = matchDataManager.matchData.state
-            if(matchState !== "end" && matchState !=="pause" && matchState !=="init")
-                return
+            // TODO uncomment
+//            if(matchState !== "end" && matchState !=="pause" && matchState !=="init")
+//                return
             matchDataManager.hideScoreBoardReq()
             finalScore.state = "full"
         }

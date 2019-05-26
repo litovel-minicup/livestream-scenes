@@ -12,38 +12,52 @@ Item {
     property alias color: background.color
     property alias backgroundOpacity: background.opacity
     property real alignWidth: 0
-    readonly property Item textParent: component
+    readonly property Item textParent: text.parent
+    property alias textWrapper: textWrapper
+    property alias background: background
+
+    width: /*Math.max(*/2 * component.hPadding + fm.advanceWidth(text.text)/*,
+                    component.alignWidth)*/
 
     QtObject {
         id: internal
 
         function stretchComponentWithText() {
-            var str = "A".repeat(text.text.length)
+            var str = (component.monospaceHack) ?"A".repeat(text.text.length) :text.text
 
             fm.font = component.text.font
-            component.width = Math.max(2 * component.hPadding + fm.advanceWidth(str),
-                                       component.alignWidth)
+//            component.width = Math.max(2 * component.hPadding + fm.advanceWidth(str),
+//                                       component.alignWidth)
         }
     }
 
-    Rectangle {
+    SideAnchoredRect {
         id: background
-        anchors.fill: parent
+
+        width: parent.width
+        height: parent.height
     }
 
     FontMetrics {
         id: fm
     }
 
-    Text {
-        id: text
+    Item {
+        id: textWrapper
 
-        antialiasing: true
-        font.pixelSize: component.height - 2 * component.vPadding
-        anchors.centerIn: parent
+        width: parent.width
+        height: parent.height
 
-        onTextChanged: internal.stretchComponentWithText()
-        onFontChanged: internal.stretchComponentWithText()
+        Text {
+            id: text
+
+            antialiasing: true
+            font.pixelSize: component.height - 2 * component.vPadding
+            anchors.centerIn: parent
+
+            onTextChanged: internal.stretchComponentWithText()
+            onFontChanged: internal.stretchComponentWithText()
+        }
     }
 
     Component.onCompleted: internal.stretchComponentWithText()

@@ -1,27 +1,9 @@
 <RCC>
     <qresource prefix="/">
-        <file>sceneScoreBoard.qml</file>
-        <file>ScoreBoard.qml</file>
-        <file>montserrat-light.ttf</file>
-        <file>montserrat-regular.ttf</file>
-        <file>BoxedText.qml</file>
-        <file>BoxedTextStyle.qml</file>
-        <file>scenePlayersView.qml</file>
-        <file>PlayersView.qml</file>
-        <file>MonospacedText.qml</file>
-        <file>sceneFinalScore.qml</file>
-        <file>FinalScore.qml</file>
-        <file>WrappedText.qml</file>
-        <file>StyledText.qml</file>
-        <file>StyledTextStyle.qml</file>
-        <file>sceneShooter.qml</file>
-        <file>ShooterView.qml</file>
-        <file>scenePreview.qml</file>
-        <file>logo.svg</file>
+        <file>main.qml</file>
         <file>font/mc_font.otf</file>
         <file>font/Saira-Black.ttf</file>
         <file>font/Saira-Regular.ttf</file>
-        <file>MaskedClipper.qml</file>
         <file>mc-club-logos-2019/2019/dukla-praha.png</file>
         <file>mc-club-logos-2019/2019/hk-ivancice.png</file>
         <file>mc-club-logos-2019/2019/horka-nad-moravou.png</file>
@@ -38,6 +20,45 @@
         <file>mc-club-logos-2019/2019/velka-bystrice.png</file>
         <file>mc-club-logos-2019/2019/velke-mezirici.png</file>
         <file>mc-club-logos-2019/2019/litovel-minicup.png</file>
-        <file>SideAnchoredRect.qml</file>
+        <file>res/fb-logo.png</file>
+        <file>res/ig-logo.png</file>
+        <file>res/yt-logo.png</file>
+        <file>component/BaseTable.qml</file>
+        <file>component/BoxedText.qml</file>
+        <file>component/BoxedTextStyle.qml</file>
+        <file>component/CategoryTableRow.qml</file>
+        <file>component/CategoryTableTitle.qml</file>
+        <file>component/FinalScore.qml</file>
+        <file>component/MaskedClipper.qml</file>
+        <file>component/MonospacedText.qml</file>
+        <file>component/PlayersList.qml</file>
+        <file>component/PlayersListRow.qml</file>
+        <file>component/PlayersListTitle.qml</file>
+        <file>component/PlayersView.qml</file>
+        <file>component/PosLinkedText.qml</file>
+        <file>component/PosLinkMonospacedText.qml</file>
+        <file>component/ScoreBoard.qml</file>
+        <file>component/ScoreStrip.qml</file>
+        <file>component/ShooterView.qml</file>
+        <file>component/SideAnchoredRect.qml</file>
+        <file>component/SocialMediaItem.qml</file>
+        <file>component/SocialMedias.qml</file>
+        <file>component/StyledText.qml</file>
+        <file>component/StyledTextStyle.qml</file>
+        <file>component/TeamTiles.qml</file>
+        <file>component/WrappedText.qml</file>
+        <file>font/montserrat-light.ttf</file>
+        <file>font/montserrat-regular.ttf</file>
+        <file>scene/sceneCategoryTable.qml</file>
+        <file>scene/sceneFinalScore.qml</file>
+        <file>scene/sceneNameDisplayAnna.qml</file>
+        <file>scene/sceneNameDisplayPepa.qml</file>
+        <file>scene/scenePlayersView.qml</file>
+        <file>scene/scenePreview.qml</file>
+        <file>scene/sceneScoreBoard.qml</file>
+        <file>scene/sceneShooter.qml</file>
+        <file>scene/sceneSocialMedias.qml</file>
+        <file>scene/sceneTeamTiles.qml</file>
+        <file>main.cpp</file>
     </qresource>
 </RCC>

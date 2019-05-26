@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine.load(QUrl::fromLocalFile(QStringLiteral("C:/Users/Sony/Documents/livestream-scenes/dev/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
 

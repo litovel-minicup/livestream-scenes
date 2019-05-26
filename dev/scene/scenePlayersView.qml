@@ -73,6 +73,7 @@ Item {
         homePlayersView.teamTextColor = data.home_team_color_text
         homePlayersView.teamSlug = data.home_team_slug
         homePlayersView.datas = data.players.home.players
+        homePlayersView.getLongestNames()
 
         awayPlayersView.teamName = data.away_team_name
         awayPlayersView.teamPrimaryColor = data.away_team_color_primary
@@ -80,5 +81,6 @@ Item {
         awayPlayersView.teamTextColor = data.away_team_color_text
         awayPlayersView.teamSlug = data.away_team_slug
         awayPlayersView.datas = data.players.away.players
+        awayPlayersView.getLongestNames()
     }
 }

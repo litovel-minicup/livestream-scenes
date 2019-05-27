@@ -33,7 +33,7 @@ Item {
     SocialMedias {
         id: socialMedias
 
-        state: "full"
+        state: "hidden"
         width: parent.width
         height: width / 28.5
     }

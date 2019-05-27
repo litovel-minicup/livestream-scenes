@@ -54,7 +54,7 @@ Item {
         id: scoreBoard
 
         size: parent.height * 0.66
-        state: "full"
+        state: "hidden"
 
         anchors.left: offset.right
         anchors.top: offset.bottom

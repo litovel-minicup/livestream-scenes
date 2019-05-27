@@ -40,7 +40,7 @@ Item {
         primaryColor: "#04339b"
         secondaryColor: "#01e35d"
         textColor: "#04339b"
-        teamName: "Komentátor"
+        teamName: "Reportérka"
         slug: "litovel-minicup"
         teamNameTextColor: "black"
 

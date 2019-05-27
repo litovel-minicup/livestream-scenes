@@ -62,8 +62,6 @@ Item {
         for(var i = 0; i < data.category_table.length; i++) {
             var teamData = data.category_table[i]
 
-            if(table.datas[i] === undefined)
-                continue
             names.unshift(teamData.name)
             slugs.unshift(teamData.slug)
             textColors.unshift(teamData.color_text)

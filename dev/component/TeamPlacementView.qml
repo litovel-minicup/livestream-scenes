@@ -198,7 +198,9 @@ Item {
             Text {
                 id: place
 
-                text: component.places[internal.currentPage] + "."
+                text: (component.places[internal.currentPage])
+                      ?component.places[internal.currentPage] + "."
+                      :"0."
                 color: "black"
 
                 font.family: "Saira Black"
@@ -240,8 +242,11 @@ Item {
                 }
 
                 Text {
-                    text: component.names[internal.currentPage].toUpperCase()
-                    color: component.textColors[internal.currentPage]
+                    text: (component.names[internal.currentPage])
+                          ?component.names[internal.currentPage].toUpperCase() :""
+                    color: (component.textColors[internal.currentPage])
+                           ?component.textColors[internal.currentPage]
+                           :"black"
 
                     font: mockupTeamName.font
 
@@ -265,6 +270,8 @@ Item {
         }
 
         function placementColor() {
+            if(!component.places[internal.currentPage])
+                return "white"
             if(component.places[internal.currentPage] == 1)
                 return "#FFDA00"
             else if(component.places[internal.currentPage] == 2)

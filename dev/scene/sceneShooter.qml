@@ -16,11 +16,20 @@ Item {
     }
 
     FontLoader {
-        source: "montserrat-light.ttf"
+        // High School USA Sans
+        source: "../font/mc_font.otf"
     }
 
+
     FontLoader {
-        source: "montserrat-regular.ttf"
+        // Saira Black
+        source: "../font/Saira-Black.ttf"
+    }
+
+
+    FontLoader {
+        // Saira
+        source: "../font/Saira-Regular.ttf"
     }
 
     Connections {

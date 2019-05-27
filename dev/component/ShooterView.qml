@@ -195,8 +195,8 @@ Item {
             Text {
                 id: playerName
 
-                text: ((component.playerName == "")
-                            ?component.teamName :component.playerName)+ "   "
+                text: (((component.playerName == "")
+                            ?component.teamName :component.playerName)+ "   ").toUpperCase()
                 color: component.textColor
 
                 font.pixelSize: parent.height * 0.45

@@ -62,7 +62,7 @@ Item {
                 Text {
                     id: lastname
 
-                    text: item.playerLastName
+                    text: item.playerLastName.toUpperCase()
                     color: "black"
 
                     font.family: "High School USA Sans"
@@ -74,7 +74,7 @@ Item {
                 Text {
                     id: firstname
 
-                    text: item.playerFirstName
+                    text: item.playerFirstName.toUpperCase()
                     color: "#444444"
 
                     font.family: "High School USA Sans"

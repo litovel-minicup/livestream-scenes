@@ -208,7 +208,7 @@ Item {
             width: parent.width * 0.3062
             height: parent.height
 
-            text.text: component.teamHome
+            text.text: component.teamHome.toUpperCase()
             text.font.pixelSize: height * 0.6
             style: internal.homeTeamStyle
 
@@ -222,7 +222,7 @@ Item {
             width: parent.width * 0.3062
             height: parent.height
 
-            text.text: component.teamAway
+            text.text: component.teamAway.toUpperCase()
             text.font.pixelSize: teamHomeBox.text.font.pixelSize
             style: internal.awayTeamStyle
 

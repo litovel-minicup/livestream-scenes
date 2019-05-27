@@ -133,7 +133,7 @@ Item {
         }
 
         Text {
-            text: component.teamName
+            text: component.teamName.toUpperCase()
             color: component.teamTextColor
             font.family: "High School USA Sans"
             font.pixelSize: parent.height * 0.462

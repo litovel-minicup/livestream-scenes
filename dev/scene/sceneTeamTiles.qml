@@ -46,12 +46,12 @@ Item {
 
     function updateData(data) {
         // setting team names
-        teamTiles.teamHome = data.home_team_abbr
+        teamTiles.teamHome = data.home_team_abbr.toUpperCase()
         teamTiles.teamHomeColor = data.home_team_color_primary
         teamTiles.teamHomeTextColor = data.home_team_color_secondary
         teamTiles.teamHomeSlug = data.home_team_slug
 
-        teamTiles.teamAway = data.away_team_abbr
+        teamTiles.teamAway = data.away_team_abbr.toUpperCase()
         teamTiles.teamAwayColor = data.away_team_color_primary
         teamTiles.teamAwayTextColor = data.away_team_color_secondary
         teamTiles.teamAwaySlug = data.away_team_slug

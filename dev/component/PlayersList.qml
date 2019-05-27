@@ -65,7 +65,7 @@ BaseTable {
     titleComponent: PlayersListTitle {
         slug: table.teamSlug
         color: table.teamPrimaryColor
-        teamName: table.teamName
+        teamName: table.teamName.toUpperCase()
         teamTextColor: table.teamSecondaryColor
     }
 

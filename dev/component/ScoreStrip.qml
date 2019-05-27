@@ -225,7 +225,7 @@ Item {
                 Text {
                     id: teamHomeText
 
-                    text: component.teamHome
+                    text: component.teamHome.toUpperCase()
                     font.family: "High School USA Sans"
                     font.pixelSize: 0.344 * teamHomeBox.height
                     wrapMode: Text.WordWrap
@@ -273,7 +273,7 @@ Item {
                 Text {
                     id: teamAwayText
 
-                    text: component.teamAway
+                    text: component.teamAway.toUpperCase()
                     font.family: "High School USA Sans"
                     font.pixelSize: 0.344 * teamAwayBox.height
                     wrapMode: Text.WordWrap

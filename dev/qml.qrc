@@ -60,5 +60,8 @@
         <file>scene/sceneSocialMedias.qml</file>
         <file>scene/sceneTeamTiles.qml</file>
         <file>main.cpp</file>
+        <file>component/TeamPlacementView.qml</file>
+        <file>font/Saira-Medium.ttf</file>
+        <file>scene/sceneTeamPlacementView.qml</file>
     </qresource>
 </RCC>

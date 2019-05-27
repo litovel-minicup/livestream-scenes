@@ -32,6 +32,11 @@ Item {
     Connections {
         target: matchDataManager
         onMatchDataChanged: component.updateData(matchDataManager.matchData)
+        onMatchStarted: {
+            matchDataManager.hideFinalScoreReq()
+            scoreBoard.state = "full"
+        }
+
         onShowFullScoreBoardReq: {
             matchDataManager.hideFinalScoreReq()
             scoreBoard.state = "full"

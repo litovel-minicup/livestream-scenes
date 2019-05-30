@@ -63,5 +63,6 @@
         <file>component/TeamPlacementView.qml</file>
         <file>font/Saira-Medium.ttf</file>
         <file>scene/sceneTeamPlacementView.qml</file>
+        <file>scene/sceneSubs.qml</file>
     </qresource>
 </RCC>

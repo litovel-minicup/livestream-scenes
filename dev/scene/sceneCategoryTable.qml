@@ -117,8 +117,13 @@ Item {
             table.datas[i].loses = teamData.loses
             table.datas[i].ties = teamData.draws
             table.datas[i].points = teamData.points
-            table.datas[i].score = ('0' + teamData.scored).slice(-2) + ":"
-                    + ('0' + teamData.received).slice(-2)
+
+            var slicer = function(str) {
+                return (str.length < 2) ?('0' + str).slice(-2) :str
+            }
+
+            table.datas[i].score = slicer(teamData.scored.toString()) + ":"
+                    + slicer(teamData.received.toString())
 
             if(teamData.id === teamHomeId || teamData.id === teamAwayId) {
                 table.datas[i].text_color = teamData.color_secondary

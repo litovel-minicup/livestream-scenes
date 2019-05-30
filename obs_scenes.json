@@ -240,20 +240,45 @@
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
+            "filters": [
+                {
+                    "deinterlace_field_order": 0,
+                    "deinterlace_mode": 0,
+                    "enabled": true,
+                    "flags": 0,
+                    "hotkeys": {},
+                    "id": "crop_filter",
+                    "mixers": 0,
+                    "monitoring_type": 0,
+                    "muted": false,
+                    "name": "Oříznutí/odsazení",
+                    "private_settings": {},
+                    "push-to-mute": false,
+                    "push-to-mute-delay": 0,
+                    "push-to-talk": false,
+                    "push-to-talk-delay": 0,
+                    "settings": {
+                        "left": 375,
+                        "right": 375
+                    },
+                    "sync": 0,
+                    "volume": 1.0
+                }
+            ],
             "flags": 0,
             "hotkeys": {},
-            "id": "image_source",
+            "id": "monitor_capture",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "label_outside",
+            "name": "Záznam obrazovky",
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/label_outside.png"
+                "monitor": 0
             },
             "sync": 0,
             "volume": 1.0
@@ -268,93 +293,14 @@
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "label_hala",
+            "name": "background",
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/label_hala.png"
-            },
-            "sync": 0,
-            "volume": 1.0
-        },
-        {
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {},
-            "id": "quickview_source",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "Name_Anna",
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneNameDisplayAnna.qml",
-                "fps": 0,
-                "height": 160,
-                "test": 0,
-                "valid": "#FFFF00",
-                "width": 800
-            },
-            "sync": 0,
-            "volume": 1.0
-        },
-        {
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {},
-            "id": "quickview_source",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "Name_Pepa",
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneNameDisplayPepa.qml",
-                "height": 160,
-                "test": 2,
-                "valid": "#FFFF00",
-                "width": 800
-            },
-            "sync": 0,
-            "volume": 1.0
-        },
-        {
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {},
-            "id": "quickview_source",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "players_list",
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/scenePlayersView.qml",
-                "height": 550,
-                "test": 2,
-                "valid": "#FFFF00",
-                "width": 1280
+                "file": "C:/Users/Sony/Documents/livestream-scenes/background.png"
             },
             "sync": 0,
             "volume": 1.0
@@ -366,22 +312,58 @@
             "flags": 0,
             "hotkeys": {
                 "OBSBasic.SelectScene": [],
-                "libobs.hide_scene_item.animace_loga": [],
-                "libobs.show_scene_item.animace_loga": []
+                "libobs.hide_scene_item.Záznam obrazovky": [],
+                "libobs.hide_scene_item.background": [],
+                "libobs.hide_scene_item.label_hala": [],
+                "libobs.hide_scene_item.label_outside": [],
+                "libobs.hide_scene_item.mc_logo": [],
+                "libobs.show_scene_item.Záznam obrazovky": [],
+                "libobs.show_scene_item.background": [],
+                "libobs.show_scene_item.label_hala": [],
+                "libobs.show_scene_item.label_outside": [],
+                "libobs.show_scene_item.mc_logo": []
             },
             "id": "scene",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Z1",
+            "name": "Z2",
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "id_counter": 3,
+                "id_counter": 7,
                 "items": [
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "id": 1,
+                        "locked": true,
+                        "name": "background",
+                        "pos": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
                     {
                         "align": 5,
                         "bounds": {
@@ -396,10 +378,122 @@
                         "crop_top": 0,
                         "id": 3,
                         "locked": false,
-                        "name": "animace_loga",
+                        "name": "Záznam obrazovky",
                         "pos": {
+                            "x": 41.0,
+                            "y": 200.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 0.783760666847229,
+                            "y": 0.78333336114883423
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
                             "x": 0.0,
                             "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "id": 4,
+                        "locked": false,
+                        "name": "Záznam obrazovky",
+                        "pos": {
+                            "x": 969.0,
+                            "y": 201.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 0.78034186363220215,
+                            "y": 0.78055554628372192
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "id": 5,
+                        "locked": false,
+                        "name": "mc_logo",
+                        "pos": {
+                            "x": 1481.0,
+                            "y": -66.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 0.31666666269302368,
+                            "y": 0.31666666269302368
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "id": 6,
+                        "locked": false,
+                        "name": "label_hala",
+                        "pos": {
+                            "x": 41.0,
+                            "y": 200.0
+                        },
+                        "private_settings": {},
+                        "rot": 0.0,
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_filter": "disable",
+                        "visible": true
+                    },
+                    {
+                        "align": 5,
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_align": 0,
+                        "bounds_type": 0,
+                        "crop_bottom": 0,
+                        "crop_left": 0,
+                        "crop_right": 0,
+                        "crop_top": 0,
+                        "id": 7,
+                        "locked": false,
+                        "name": "label_outside",
+                        "pos": {
+                            "x": 970.0,
+                            "y": 200.0
                         },
                         "private_settings": {},
                         "rot": 0.0,
@@ -421,18 +515,49 @@
             "enabled": true,
             "flags": 0,
             "hotkeys": {},
-            "id": "image_source",
+            "id": "quickview_source",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "mc_logo",
+            "name": "team_placement",
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "file": "C:/Users/Sony/Downloads/do_animace_male_00059.png"
+                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneTeamPlacementView.qml",
+                "height": 300,
+                "width": 800
+            },
+            "sync": 0,
+            "volume": 1.0
+        },
+        {
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {
+                "MediaSource.Restart": [],
+                "libobs.mute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": [],
+                "libobs.unmute": []
+            },
+            "id": "ffmpeg_source",
+            "mixers": 255,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "animace_loga",
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "clear_on_media_end": false,
+                "local_file": "C:/Users/Sony/Documents/livestream-scenes/dev/res/male_logo_animace.mov"
             },
             "sync": 0,
             "volume": 1.0
@@ -447,18 +572,122 @@
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "scoreboard",
+            "name": "tiles",
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneScoreBoard.qml",
+                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneTeamTiles.qml",
+                "height": 720,
+                "test": 2,
+                "valid": "#FFFF00",
+                "width": 1280
+            },
+            "sync": 0,
+            "volume": 1.0
+        },
+        {
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "quickview_source",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "final_score",
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneFinalScore.qml",
+                "height": 300,
+                "test": 2,
+                "valid": "#FFFF00",
+                "width": 1920
+            },
+            "sync": 0,
+            "volume": 1.0
+        },
+        {
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "quickview_source",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "social_medias",
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneSocialMedias.qml",
+                "height": 80,
+                "test": 2,
+                "valid": "#FFFF00",
+                "width": 1920
+            },
+            "sync": 0,
+            "volume": 1.0
+        },
+        {
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "quickview_source",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "shooter",
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneShooter.qml",
                 "height": 200,
                 "test": 2,
                 "valid": "#FFFF00",
-                "width": 700
+                "width": 1200
+            },
+            "sync": 0,
+            "volume": 1.0
+        },
+        {
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "quickview_source",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "category_table",
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneCategoryTable.qml",
+                "height": 800,
+                "test": 2,
+                "valid": "#FFFF00",
+                "width": 1500
             },
             "sync": 0,
             "volume": 1.0
@@ -829,44 +1058,18 @@
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "category_table",
+            "name": "scoreboard",
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneCategoryTable.qml",
-                "height": 800,
-                "test": 2,
-                "valid": "#FFFF00",
-                "width": 1500
-            },
-            "sync": 0,
-            "volume": 1.0
-        },
-        {
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {},
-            "id": "quickview_source",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "shooter",
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneShooter.qml",
+                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneScoreBoard.qml",
                 "height": 200,
                 "test": 2,
                 "valid": "#FFFF00",
-                "width": 1200
+                "width": 700
             },
             "sync": 0,
             "volume": 1.0
@@ -877,127 +1080,18 @@
             "enabled": true,
             "flags": 0,
             "hotkeys": {},
-            "id": "quickview_source",
+            "id": "image_source",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "social_medias",
+            "name": "mc_logo",
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneSocialMedias.qml",
-                "height": 80,
-                "test": 2,
-                "valid": "#FFFF00",
-                "width": 1920
-            },
-            "sync": 0,
-            "volume": 1.0
-        },
-        {
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {},
-            "id": "quickview_source",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "final_score",
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneFinalScore.qml",
-                "height": 300,
-                "test": 2,
-                "valid": "#FFFF00",
-                "width": 1920
-            },
-            "sync": 0,
-            "volume": 1.0
-        },
-        {
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {},
-            "id": "quickview_source",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "tiles",
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneTeamTiles.qml",
-                "height": 720,
-                "test": 2,
-                "valid": "#FFFF00",
-                "width": 1280
-            },
-            "sync": 0,
-            "volume": 1.0
-        },
-        {
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {
-                "MediaSource.Restart": [],
-                "libobs.mute": [],
-                "libobs.push-to-mute": [],
-                "libobs.push-to-talk": [],
-                "libobs.unmute": []
-            },
-            "id": "ffmpeg_source",
-            "mixers": 255,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "animace_loga",
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "clear_on_media_end": false,
-                "local_file": "C:/Users/Sony/Documents/livestream-scenes/dev/res/male_logo_animace.mov"
-            },
-            "sync": 0,
-            "volume": 1.0
-        },
-        {
-            "deinterlace_field_order": 0,
-            "deinterlace_mode": 0,
-            "enabled": true,
-            "flags": 0,
-            "hotkeys": {},
-            "id": "quickview_source",
-            "mixers": 0,
-            "monitoring_type": 0,
-            "muted": false,
-            "name": "team_placement",
-            "private_settings": {},
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneTeamPlacementView.qml",
-                "height": 300,
-                "width": 800
+                "file": "C:/Users/Sony/Downloads/do_animace_male_00059.png"
             },
             "sync": 0,
             "volume": 1.0
@@ -1009,58 +1103,22 @@
             "flags": 0,
             "hotkeys": {
                 "OBSBasic.SelectScene": [],
-                "libobs.hide_scene_item.Záznam obrazovky": [],
-                "libobs.hide_scene_item.background": [],
-                "libobs.hide_scene_item.label_hala": [],
-                "libobs.hide_scene_item.label_outside": [],
-                "libobs.hide_scene_item.mc_logo": [],
-                "libobs.show_scene_item.Záznam obrazovky": [],
-                "libobs.show_scene_item.background": [],
-                "libobs.show_scene_item.label_hala": [],
-                "libobs.show_scene_item.label_outside": [],
-                "libobs.show_scene_item.mc_logo": []
+                "libobs.hide_scene_item.animace_loga": [],
+                "libobs.show_scene_item.animace_loga": []
             },
             "id": "scene",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Z2",
+            "name": "Z1",
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "id_counter": 7,
+                "id_counter": 3,
                 "items": [
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "id": 1,
-                        "locked": true,
-                        "name": "background",
-                        "pos": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 1.0,
-                            "y": 1.0
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
                     {
                         "align": 5,
                         "bounds": {
@@ -1075,122 +1133,10 @@
                         "crop_top": 0,
                         "id": 3,
                         "locked": false,
-                        "name": "Záznam obrazovky",
+                        "name": "animace_loga",
                         "pos": {
-                            "x": 41.0,
-                            "y": 200.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 0.783760666847229,
-                            "y": 0.78333336114883423
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
                             "x": 0.0,
                             "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "id": 4,
-                        "locked": false,
-                        "name": "Záznam obrazovky",
-                        "pos": {
-                            "x": 969.0,
-                            "y": 201.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 0.78034186363220215,
-                            "y": 0.78055554628372192
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "id": 5,
-                        "locked": false,
-                        "name": "mc_logo",
-                        "pos": {
-                            "x": 1481.0,
-                            "y": -66.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 0.31666666269302368,
-                            "y": 0.31666666269302368
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "id": 6,
-                        "locked": false,
-                        "name": "label_hala",
-                        "pos": {
-                            "x": 41.0,
-                            "y": 200.0
-                        },
-                        "private_settings": {},
-                        "rot": 0.0,
-                        "scale": {
-                            "x": 1.0,
-                            "y": 1.0
-                        },
-                        "scale_filter": "disable",
-                        "visible": true
-                    },
-                    {
-                        "align": 5,
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_align": 0,
-                        "bounds_type": 0,
-                        "crop_bottom": 0,
-                        "crop_left": 0,
-                        "crop_right": 0,
-                        "crop_top": 0,
-                        "id": 7,
-                        "locked": false,
-                        "name": "label_outside",
-                        "pos": {
-                            "x": 970.0,
-                            "y": 200.0
                         },
                         "private_settings": {},
                         "rot": 0.0,
@@ -1212,18 +1158,22 @@
             "enabled": true,
             "flags": 0,
             "hotkeys": {},
-            "id": "image_source",
+            "id": "quickview_source",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "background",
+            "name": "players_list",
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "file": "C:/Users/Sony/Documents/livestream-scenes/background.png"
+                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/scenePlayersView.qml",
+                "height": 550,
+                "test": 2,
+                "valid": "#FFFF00",
+                "width": 1280
             },
             "sync": 0,
             "volume": 1.0
@@ -1232,45 +1182,95 @@
             "deinterlace_field_order": 0,
             "deinterlace_mode": 0,
             "enabled": true,
-            "filters": [
-                {
-                    "deinterlace_field_order": 0,
-                    "deinterlace_mode": 0,
-                    "enabled": true,
-                    "flags": 0,
-                    "hotkeys": {},
-                    "id": "crop_filter",
-                    "mixers": 0,
-                    "monitoring_type": 0,
-                    "muted": false,
-                    "name": "Oříznutí/odsazení",
-                    "private_settings": {},
-                    "push-to-mute": false,
-                    "push-to-mute-delay": 0,
-                    "push-to-talk": false,
-                    "push-to-talk-delay": 0,
-                    "settings": {
-                        "left": 375,
-                        "right": 375
-                    },
-                    "sync": 0,
-                    "volume": 1.0
-                }
-            ],
             "flags": 0,
             "hotkeys": {},
-            "id": "monitor_capture",
+            "id": "quickview_source",
             "mixers": 0,
             "monitoring_type": 0,
             "muted": false,
-            "name": "Záznam obrazovky",
+            "name": "Name_Pepa",
             "private_settings": {},
             "push-to-mute": false,
             "push-to-mute-delay": 0,
             "push-to-talk": false,
             "push-to-talk-delay": 0,
             "settings": {
-                "monitor": 0
+                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneNameDisplayPepa.qml",
+                "height": 160,
+                "test": 2,
+                "valid": "#FFFF00",
+                "width": 800
+            },
+            "sync": 0,
+            "volume": 1.0
+        },
+        {
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "quickview_source",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "Name_Anna",
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "file": "C:/Users/Sony/Documents/livestream-scenes/dev/scene/sceneNameDisplayAnna.qml",
+                "fps": 0,
+                "height": 160,
+                "test": 0,
+                "valid": "#FFFF00",
+                "width": 800
+            },
+            "sync": 0,
+            "volume": 1.0
+        },
+        {
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "image_source",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "label_hala",
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "file": "C:/Users/Sony/Documents/livestream-scenes/label_hala.png"
+            },
+            "sync": 0,
+            "volume": 1.0
+        },
+        {
+            "deinterlace_field_order": 0,
+            "deinterlace_mode": 0,
+            "enabled": true,
+            "flags": 0,
+            "hotkeys": {},
+            "id": "image_source",
+            "mixers": 0,
+            "monitoring_type": 0,
+            "muted": false,
+            "name": "label_outside",
+            "private_settings": {},
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "settings": {
+                "file": "C:/Users/Sony/Documents/livestream-scenes/label_outside.png"
             },
             "sync": 0,
             "volume": 1.0
